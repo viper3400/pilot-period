@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Pilot Period',
   tagline: 'A tech & testing blog',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://viper3400.github.io/',
+  baseUrl: '/pilot-period/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -100,15 +100,15 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/viper3400',
+                href: 'https://github.com/viper3400/',
               },
               {
                 label: 'Mastodon',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discordapp.com/invite/docusaurus/',
               },
               {
                 label: 'Xing',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discordapp.com/invite/docusaurus/',
               },
             ],
           },
@@ -117,7 +117,7 @@ const config = {
             items: [
               {
                 label: 'Docusaurus',
-                href: 'https://docusaurus,io',
+                href: 'https://docusaurus.io/',
               },
             ]
           }

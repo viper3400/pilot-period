@@ -5,28 +5,32 @@ authors: [jang]
 tags: [software-testing, automation, serenity-js]
 ---
 
-_Skill Level: [Associate QA](https://medium.com/m/callback/email?token=ba0c01705ac4&operation=login&state=medium)_
+_Skill Level: Anfänger_
 
-:::tip I do not speak German
+# Der Unterschied zwischen Automation, Browserautomation und Testframework
 
-This blog is available in English.
-
-:::
-
-In der Diskussion um das richtige Framework für die automatische Durchführung von
+In der Diskussion um das richtige Framework oder Tool für die automatische Durchführung von
 Test für Webapplikationen kann es in Diskussionen schnell zu einem kleinen
 Schlagabtausch kommen. Bezeichnend dafür ist, dass es dann häufig um die technischen
-Aspekte eines Framework oder Tools geht. Je aufgehitzer die Diskussion, deskto
-mehr rutscht der Aspekt des Testens in den Hintergrund.
+Aspekte eines Framework oder Tools geht. 
+
+Wir velieren dabei einen einfachen Sachverhalt aus den Augen
+und nicht selten wird dann aneinander vorbei geredet. Je aufgehitzer die Diskussion, desto
+mehr rutscht der eigentliche Aspekt des Testens in den Hintergrund.
+
 
 Nehmen wir uns ein Schlagwort und nehmen wir es auseinander: **Testautomation**. Diese Wort besteht aus den
 Teilen **Test** und **Automation**.
 
-Schauen wir und dazu doch einfach mal ein Beispiel an. Wir haben eine Anzahl
-Verzeichnisse. In diesen Verzeichnissen suchen wir nach Dateien. Ist eine Datei
+### Beispiel A - Automation
+Schauen wir und dazu ein Beispiel an:
+- Wir haben eine Anzahl
+Verzeichnisse
+- In diesen Verzeichnissen suchen wir nach Dateien.
+- Ist eine Datei
 älter als 60 Tage, löschen wir diese.
 
-Der Code in einem Automationsskript könnte so aussehen:
+Ein Automationsskript könnte so aussehen:
 
 ```ts
 var folders = [ 'pictures', 'documents', 'desktop' ];
@@ -42,11 +46,17 @@ foreach(folder in folders) {
 ```
 
 Wir haben also das Löschen von alten Dateien **automatisiert**. 
-Aber haben wir **getestet**, das die Dateien gelöscht wurden sind?
+Aber haben wir **getestet**, das die Dateien gelöscht worden sind?
 
-Gehen wir über zur **Browserautomation**. Auch hier haben wir einen
-Automationsauftrag: Öffne eine Suchmaschiene und suche, wie man
-ein Ei kochen muss.
+Gehen wir über zum nächsten Schalgwort, der **Browserautomation**. 
+Wir **automatisieren** den **Browser**.
+
+### Beispiel B - Browserautomation
+Auch hier haben wir einen entsprechenden Auftrag:
+- Öffne eine Suchmaschiene
+- Suche, wie man ein Ei kochen muss
+
+Das Skript im Tool zur Browserautomation unserer Wahl könnte so aussehen:
 
 ```ts
 var webpage = browser.getUrl('https://duckduckgo.com');
@@ -56,5 +66,65 @@ webpage.click(searchButton);
 
 ```
 
-Auch hier: Wir haben die Suche **automatisier**t, **nicht** aber das Suchergebnis **überprüft**.
+Auch hier: Wir haben die Suche bzw. die Seite im Browser **automatisiert**, **nicht** aber das Suchergebnis **überprüft**.
 Wir wissen also nicht, ob unsere Suche tatsächlich funktioniert hat.
+
+Automation heisst also zunächst ersteinmal nur einen Ablauf, den ich 
+normalerweise manuell durchführen würde, durch einen Automaten 
+durchführen zu lassen.
+
+
+
+### Testautomation
+
+In beiden Fällen haben wir Abläufe **automatisiert**,
+jedoch noch nicht wirklicht **getestet**.
+
+- Ein Ablauf ist **ergebnisunabhängig**
+- Ein Test zwingend abhängig von einem **erwarteten Ergebnis**
+
+Ich kann das erwartete Ergebnis natürlich manuell überprüfen, bzw.
+testen. Um auch den Test zu automatisieren, wird ein Testframework
+benötigt. 
+
+Mit diesem Framework kann ich prüfen, ob das **Ergebnis** einer vorgelagerten
+**Automation** meinen **Erwartungen** entspricht.
+
+
+Unsere beiden Beispiele A und B mit einem Testframework erweitert,
+könnten nun wie folgt aussehen.
+
+Für Beispiel A:
+
+```ts
+var expectedDeletedFile = 'Image61DaysOld.png';
+var expectedNotDeletedFile = 'Image60DaysOld.png';
+
+var folders = [ 'pictures', 'documents', 'desktop' ];
+
+foreach(folder in folders) {
+    var files = folder.getFiles();
+    foreach (file in files) {
+        var fileAge = file.getAge();
+        if (fileAge > Days(60))
+          delete(file)
+    }
+}
+
+test(FileNotExists(expectedDeletedFile));
+test(FileExists(expectedNotDeletedFile));
+```
+
+Für Beispiel B:
+
+```ts
+var expectedLink = 'https://ilovecooking/boil_an_egg.html':
+
+var webpage = browser.getUrl('https://duckduckgo.com');
+
+webpage.enterSearchValue('how to boil an egg');
+webpage.click(searchButton);
+
+test(LinkExistsOnPage(expectedLink)):
+
+```
