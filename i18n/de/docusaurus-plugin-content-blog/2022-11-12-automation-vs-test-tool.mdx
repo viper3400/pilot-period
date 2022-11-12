@@ -1,0 +1,60 @@
+---
+slug: automation-vs-test-tool
+title: Automation vs. Testframework
+authors: [jang]
+tags: [software-testing, automation, serenity-js]
+---
+
+_Skill Level: [Associate QA](https://medium.com/m/callback/email?token=ba0c01705ac4&operation=login&state=medium)_
+
+:::tip I do not speak German
+
+This blog is available in English.
+
+:::
+
+In der Diskussion um das richtige Framework für die automatische Durchführung von
+Test für Webapplikationen kann es in Diskussionen schnell zu einem kleinen
+Schlagabtausch kommen. Bezeichnend dafür ist, dass es dann häufig um die technischen
+Aspekte eines Framework oder Tools geht. Je aufgehitzer die Diskussion, deskto
+mehr rutscht der Aspekt des Testens in den Hintergrund.
+
+Nehmen wir uns ein Schlagwort und nehmen wir es auseinander: **Testautomation**. Diese Wort besteht aus den
+Teilen **Test** und **Automation**.
+
+Schauen wir und dazu doch einfach mal ein Beispiel an. Wir haben eine Anzahl
+Verzeichnisse. In diesen Verzeichnissen suchen wir nach Dateien. Ist eine Datei
+älter als 60 Tage, löschen wir diese.
+
+Der Code in einem Automationsskript könnte so aussehen:
+
+```ts
+var folders = [ 'pictures', 'documents', 'desktop' ];
+
+foreach(folder in folders) {
+    var files = folder.getFiles();
+    foreach (file in files) {
+        var fileAge = file.getAge();
+        if (fileAge > Days(60))
+          delete(file)
+    }
+}
+```
+
+Wir haben also das Löschen von alten Dateien **automatisiert**. 
+Aber haben wir **getestet**, das die Dateien gelöscht wurden sind?
+
+Gehen wir über zur **Browserautomation**. Auch hier haben wir einen
+Automationsauftrag: Öffne eine Suchmaschiene und suche, wie man
+ein Ei kochen muss.
+
+```ts
+var webpage = browser.getUrl('https://duckduckgo.com');
+
+webpage.enterSearchValue('how to boil an egg');
+webpage.click(searchButton);
+
+```
+
+Auch hier: Wir haben die Suche **automatisier**t, **nicht** aber das Suchergebnis **überprüft**.
+Wir wissen also nicht, ob unsere Suche tatsächlich funktioniert hat.

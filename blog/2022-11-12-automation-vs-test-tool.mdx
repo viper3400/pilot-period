@@ -1,0 +1,41 @@
+---
+slug: automation-vs-test-tool
+title: Automation vs. Testframework
+authors: [jang]
+tags: [testing, automation, serenity-js]
+---
+
+In the discussion about the right framework for the automatic execution of tests
+for web applications can quickly lead to clashes. It is indicative of this 
+that it is often about the technical aspects of a framework or tool. 
+The more heated the discussion, the more the aspect of testing slips into the background. 
+Let's take a buzzword and take it apart: **Test automation**. 
+This word consists of the Share **Test** and **Automation**. 
+Let's take a look at an example. We have a number of d∂irectories. 
+We look for files in these directories. 
+Is a file older than 60 days, we delete them. The code in an automation script might look like this:
+
+```ts
+var folders = [ 'pictures', 'documents', 'desktop' ];
+
+foreach(folder in folders) {
+    var files = folder.getFiles();
+    foreach (file in files) {
+        var fileAge = file.getAge();
+        if (fileAge > Days(60))
+          delete(file)
+    }
+}
+```
+
+So we have automated the deletion of old files. But have we **tested** that the files have been deleted? Let's move on to **Browser Automation**. Here, too, we have a Automation job: Open a search engine and find how to needs to boil an egg.
+
+```ts
+var webpage = browser.getUrl('https://duckduckgo.com');
+
+webpage.enterSearchValue('how to boil an egg');
+webpage.click(searchButton);
+
+```
+
+Again: We have the search **automated**t, **not** but the search result **checked**. So we don't know if our search actually worked.
