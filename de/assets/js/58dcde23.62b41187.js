@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[145],{9265:e=>{e.exports=JSON.parse('{"label":"software-testing","permalink":"/pilot-period/de/tags/software-testing","allTagsPath":"/pilot-period/de/tags","count":1}')}}]);

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Pilot Period Blog</title>
-        <link>https://your-docusaurus-test-site.com/</link>
+        <link>https://viper3400.github.io/pilot-period/</link>
         <description>Pilot Period Blog</description>
         <lastBuildDate>Sat, 12 Nov 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,7 +10,7 @@
         <language>en</language>
         <item>
             <title><![CDATA[Automation vs. Testframework]]></title>
-            <link>https://your-docusaurus-test-site.com/automation-vs-test-tool</link>
+            <link>https://viper3400.github.io/pilot-period/automation-vs-test-tool</link>
             <guid>automation-vs-test-tool</guid>
             <pubDate>Sat, 12 Nov 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[In the discussion about the right framework for the automatic execution of tests]]></description>
