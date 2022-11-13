@@ -14,9 +14,9 @@
             <guid>automation-vs-test-tool</guid>
             <pubDate>Sat, 12 Nov 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[Skill Level: Anfänger]]></description>
-            <content:encoded><![CDATA[<p><em>Skill Level: Anfänger</em></p><h1>Der Unterschied zwischen Automation, Browserautomation und Testframework</h1><p>In der Diskussion um das richtige Framework oder Tool für die automatische Durchführung von
-Test für Webapplikationen kann es in Diskussionen schnell zu einem kleinen
-Schlagabtausch kommen. Bezeichnend dafür ist, dass es dann häufig um die technischen
+            <content:encoded><![CDATA[<p><em>Skill Level: Anfänger</em></p><h1>Der Unterschied zwischen Automation, Browserautomation und Testframework</h1><p>In der Diskussion über das richtige Framework oder Tool für die automatische Durchführung von
+Tests für Webapplikationen kommt es in Diskussionen oft zu einem hitzigen
+Schlagabtausch. Bezeichnend dafür ist, dass es dann häufig um die technischen
 Aspekte eines Framework oder Tools geht. </p><p>Wir velieren dabei einen einfachen Sachverhalt aus den Augen
 und nicht selten wird dann aneinander vorbei geredet. Je aufgehitzer die Diskussion, desto
 mehr rutscht der eigentliche Aspekt des Testens in den Hintergrund.</p><p>Nehmen wir uns ein Schlagwort und nehmen wir es auseinander: <strong>Testautomation</strong>. Diese Wort besteht aus den
