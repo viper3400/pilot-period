@@ -1,6 +1,6 @@
 ---
 slug: welcome
-title: Welcome de
+title: Welcome
 authors: [slorber, yangshun]
 tags: [facebook, hello, docusaurus]
 draft: true
