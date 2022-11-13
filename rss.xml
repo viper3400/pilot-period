@@ -4,20 +4,17 @@
         <title>Pilot Period Blog</title>
         <link>https://viper3400.github.io/pilot-period/</link>
         <description>Pilot Period Blog</description>
-        <lastBuildDate>Sat, 12 Nov 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 13 Nov 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
-        <language>en</language>
+        <language>de</language>
         <item>
-            <title><![CDATA[Automation vs. Testframework]]></title>
-            <link>https://viper3400.github.io/pilot-period/automation-vs-test-tool</link>
-            <guid>automation-vs-test-tool</guid>
-            <pubDate>Sat, 12 Nov 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[WIP]]></description>
-            <content:encoded><![CDATA[<p>WIP</p>]]></content:encoded>
-            <category>testing</category>
-            <category>automation</category>
-            <category>serenity-js</category>
+            <title><![CDATA[Under Construction]]></title>
+            <link>https://viper3400.github.io/pilot-period/under_construction</link>
+            <guid>under_construction</guid>
+            <pubDate>Sun, 13 Nov 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[Hier gibt es bald neue Inhalte.]]></description>
+            <content:encoded><![CDATA[<div class="theme-admonition theme-admonition-info alert alert--info admonition_LlT9"><div class="admonitionHeading_tbUL"><span class="admonitionIcon_kALy"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Baustelle</div><div class="admonitionContent_S0QG"><p>Hier gibt es bald neue Inhalte.</p></div></div>]]></content:encoded>
         </item>
     </channel>
 </rss>

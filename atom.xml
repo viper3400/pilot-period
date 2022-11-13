@@ -2,24 +2,21 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://viper3400.github.io/pilot-period/</id>
     <title>Pilot Period Blog</title>
-    <updated>2022-11-12T00:00:00.000Z</updated>
+    <updated>2022-11-13T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://viper3400.github.io/pilot-period/"/>
     <subtitle>Pilot Period Blog</subtitle>
     <icon>https://viper3400.github.io/pilot-period/img/favicon.ico</icon>
     <entry>
-        <title type="html"><![CDATA[Automation vs. Testframework]]></title>
-        <id>automation-vs-test-tool</id>
-        <link href="https://viper3400.github.io/pilot-period/automation-vs-test-tool"/>
-        <updated>2022-11-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[WIP]]></summary>
-        <content type="html"><![CDATA[<p>WIP</p>]]></content>
+        <title type="html"><![CDATA[Under Construction]]></title>
+        <id>under_construction</id>
+        <link href="https://viper3400.github.io/pilot-period/under_construction"/>
+        <updated>2022-11-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Hier gibt es bald neue Inhalte.]]></summary>
+        <content type="html"><![CDATA[<div class="theme-admonition theme-admonition-info alert alert--info admonition_LlT9"><div class="admonitionHeading_tbUL"><span class="admonitionIcon_kALy"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Baustelle</div><div class="admonitionContent_S0QG"><p>Hier gibt es bald neue Inhalte.</p></div></div>]]></content>
         <author>
             <name>Jan Graefe</name>
             <uri>https://jangraefe.de</uri>
         </author>
-        <category label="testing" term="testing"/>
-        <category label="automation" term="automation"/>
-        <category label="serenity-js" term="serenity-js"/>
     </entry>
 </feed>
