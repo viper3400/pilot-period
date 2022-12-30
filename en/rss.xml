@@ -4,17 +4,19 @@
         <title>Pilot Period Blog</title>
         <link>https://viper3400.github.io/pilot-period/en/</link>
         <description>Pilot Period Blog</description>
-        <lastBuildDate>Sun, 13 Nov 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 01 Dec 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
-            <title><![CDATA[Under Construction]]></title>
-            <link>https://viper3400.github.io/pilot-period/en/under_construction</link>
-            <guid>under_construction</guid>
-            <pubDate>Sun, 13 Nov 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[This page is work in progress. New content coming soon.]]></description>
-            <content:encoded><![CDATA[<div class="theme-admonition theme-admonition-info alert alert--info admonition_LlT9"><div class="admonitionHeading_tbUL"><span class="admonitionIcon_kALy"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>Under Construction</div><div class="admonitionContent_S0QG"><p>This page is work in progress. New content coming soon.</p></div></div>]]></content:encoded>
+            <title><![CDATA[How to become a software tester]]></title>
+            <link>https://viper3400.github.io/pilot-period/en/how</link>
+            <guid>how</guid>
+            <pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[About how to become a software tester]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="about-how-to-become-a-software-tester">About how to become a software tester<a class="hash-link" href="#about-how-to-become-a-software-tester" title="Direct link to heading">​</a></h2><p>Well, you can google this and get a lot of valid answers. This is the story, about <em>I</em> became a software tester.</p><p>After successfully graduating from technical college about 15+ years ago, I was hired by a small software development company. It was specialized in software for a small market in the broadcasting sector. The software was very modular, highly configurable and rich in interfaces - either to our own modules or to third party vendors.</p><p>My job was to install, configure and take the software into production at the customer's site (within the scope of implementation projects). Furthermore, I provided remote support from the office. If errors occurred during operation, I was the first point of contact for the customer. </p><p>From today's point of view this seems unthinkable, but at that time there was no dedicated tester or test process in my team. Nor was there a clearly defined release process. The developers tested themselves, sent debug versions (all in one *.exe files) via email to the customer. The customer then tried it out and put the version into operation.</p><p>This was my first contact with a mantra, which is still with me today:</p><blockquote><p><strong>"The customer tests himself. He knows best. He knows how it should work".</strong> </p></blockquote><p>When I sat back in the support office in front of our web portal, I somehow got a different impression. If the customer knew how it had to work, why would he put a version into operation that caused errors after a more or even less long period being in production?</p><p>And why were the customers so angry,  complaining about bad quality? After all, they had tested it themselves. With their own business processes. And found it to be suitable? Otherwise they wouldn't have put the version into production, right?</p><p>I agree, the difference between "testing" and "trying something out" needs a separate post...</p><p>In any case, I was tired of constantly vowing better quality next time to customers. I'm sure our customers were also tired of believing me.</p><p>So, this small software development team had also heard something about the concept of having independent software testing. Having tests done by a second instance (besides the developer himself) before release the software to the customer.</p><p>I found the topic exciting. After all, it would enable me to gain even more better knowledge how the software works. I would also be more competent in answering questions when supporting. We would find errors earlier. We would better understand the customer's business processes. All in all, deliver better quality.</p><p>So that's how my career as a software tester started. An exciting job with a lot of build-up work and a steep learning curve. </p><p>PS:</p><p>Testing in a team with 5 - 6 developers is not a part-time job. And I still had the other tasks, that time. When customer start to order more projects again, I realized that the focus would be shifted.  I would have even less time for what had become the job I wanted to do in future. So I decided to say goodbye and work as a software tester from now on.</p>]]></content:encoded>
+            <category>SoftwareTesting</category>
+            <category>QualityAssurance</category>
         </item>
     </channel>
 </rss>
