@@ -104,11 +104,11 @@ const config = {
               },
               {
                 label: 'Mastodon',
-                href: 'https://discordapp.com/invite/docusaurus/',
+                href: 'https://mastodontech.de/@JanG/',
               },
               {
                 label: 'Xing',
-                href: 'https://discordapp.com/invite/docusaurus/',
+                href: 'https://www.xing.com/profile/Jan_Graefe2/cv',
               },
             ],
           },
