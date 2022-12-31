@@ -1,41 +1,42 @@
 ---
 slug: how
-title: Wie man Software Tester wird 
+title: How to become a software tester
 authors: [jang]
 tags: [SoftwareTesting, QualityAssurance]
 ---
 
-_To read this article in English, change the language in the menu._
+_Um diesen Artikel auf Deutsch zu lesen, ändere bitte die Sprache im Menü._
 
+## About how to become a software tester
 
-## Darüber, wie man Software Tester wird
+Well, you can google this and get a lot of valid answers.
 
-Nun, diese Frage kannst du eigentlich gleich googeln und du wirst viele richtige Antworten finden. Also ist dies die Geschichte, wie _ich_ Software Tester wurde.
+So, this is the story, about **I** became a software tester.
 
-Nachdem ich meine Fachhochschulausbildung vor 15+ Jahren erfolgreich beendet hatte, wurde ich von eine kleinen Software-Entwicklungsfirma angestellt. Sie war spezialisiert auf Software für einen kleinen Markt im Rundfunkbereich. Die Software war sehr modular, hoch konfigurierbar and reich an Schnittstellen - entweder zu unseren eigenen Modulen oder zu Drittherstellern.
+After successfully graduating from technical college about 15+ years ago, I was hired by a small software development company. It was specialized in software for a small market in the broadcasting sector. The software was very modular, highly configurable and rich in interfaces - either to our own modules or to third party vendors.
 
-Mein Job war es, bei unsren Kunden vor Ort im Rahmen von Einführungsprojekten, die Software zu installieren, zu konfigurieren und in Betrieb zu nehmen. Weiterhin stellte ich vom Büro aus den Remote-Support sicher. Traten im Betrieb Fehler auf, war ich die erste Anlaufstelle für den Kunden. 
+My job was to install, configure and take the software into production at the customer's site (within the scope of implementation projects). Furthermore, I provided remote support from the office. If errors occurred during operation, I was the first point of contact for the customer. 
 
-Aus heutiger Sicht scheint mir das undenkbar, aber zu dieser Zeit existierte in meinem Team weder ein dezidierter Tester oder Testprozess, noch gab es einen klar definierten Releaseprozess. Die Entwickler testeten selber, sendeten Debug-Versionen (all in one *.exe Dateien) per E-Mail zum Kunden. Der Kunde probierte es dann aus und nahm die Version in Betrieb.
+From today's point of view this seems unthinkable, but at that time there was no dedicated tester or test process in my team. Nor was there a clearly defined release process. The developers tested themselves, sent debug versions (all in one *.exe files) via email to the customer. The customer then tried it out and put the version into operation.
 
-Dies war mein erster Kontakt mit einem Mantra, welches mich bis heute begleitet:
+This was my first contact with a mantra, which is still with me today:
 
-> **"Der Kunde testet selbst! Er weiss ja am Besten, wie es funktionieren muss!"**
+> **"The customer tests himself. He knows best. He knows how it should work".** 
 
-Wenn ich wieder im Support Büro vor unserem Webportal sass, bekam ich dann aber irgendwie einen anderen Eindruck. Wenn der Kunde doch wusste, wie es funktionieren muss, warum nahm er dann immer wieder Versionen in Betrieb, die nach mehr oder eher weniger langer Betriebszeit Fehler verursachten?
+When I sat back in the support office in front of our web portal, I somehow got a different impression. If the customer knew how it had to work, why would he put a version into operation that caused errors after a more or even less long period being in production?
 
-Und warum waren die Kunden dann trotzdem so sauer und beschwerten sich über die Qualität? Sie hatten diese doch selber geprüft. Mit ihren eigenen Geschäftsprozessen. Und für gut empfunden? Sonst hätten sie Version doch nicht in Betrieb genommen, oder?
+And why were the customers so angry,  complaining about bad quality? After all, they had tested it themselves. With their own business processes. And found it to be suitable? Otherwise they wouldn't have put the version into production, right?
 
-Okay, für den Unterschied zwischen "testen" und "probieren" benötigt es dann wohl mal einen eigenen Post... 
+I agree, the difference between "testing" and "trying something out" needs a separate post...
 
-Ich war es in jedem Fall leid, bei den Kunden ständig Besserung zu geloben. Schlussendlich, waren es sicher auch unsere Kunden leid, mir das jedes Mal wieder aufs Neue zu glauben.
+In any case, I was tired of constantly vowing better quality next time to customers. I'm sure our customers were also tired of believing me.
 
-Nun hatte auch dieses kleine Software-Entwicklungs-Team schon einmal etwas vom Konzept des unabhängigen Testens gehört. Also Software vor der Auslieferung an den Kunden von einer zweiten Instanz (neben dem Entwickler selbst) testen zu lassen.
+So, this small software development team had also heard something about the concept of having independent software testing. Having tests done by a second instance (besides the developer himself) before release the software to the customer.
 
-Ich fand das Thema sofort spannend. Würde es mir doch ermöglichen, mich noch intensiver mit der Funktionsweise der Software auseinanderzusetzen. Auch wäre ich dann im Support bei der Beantwortung der Fragen kompetenter. Wir würden Fehler früher finden. Wir würden lernen, die Geschäftsprozesse des Kunden besser zu verstehen. Alles in allem, auch eine bessere Qualität liefern.
+I found the topic exciting. After all, it would enable me to gain even more better knowledge how the software works. I would also be more competent in answering questions when supporting. We would find errors earlier. We would better understand the customer's business processes. All in all, deliver better quality.
 
-So begann also meine Karriere als Software Tester. Eine spannende Aufgabe mit viel Aufbauarbeit und einer steilen Lernkurve. 
+So that's how my career as a software tester started. An exciting job with a lot of build-up work and a steep learning curve. 
 
 PS:
 
-Das Testen in einem Team mit 5  - 6 Entwicklern is kein Teilzeitjob. Und ich hatte ja noch die anderen Aufgaben. Als dann die Auftragslage im Projektbereich wieder anzog, wurde mir klar, dass der Fokus nun wieder dorthin verlagert werden würde.  Ich würde so noch weniger Zeit für das haben, was mir lieb geworden war. Somit entschloss ich mich, mich auch einen neuen Weg zu begeben und mich von nun an als Software Tester zu verdingen.
+Testing in a team with 5 - 6 developers is not a part-time job. And I still had the other tasks, that time. When customer start to order more projects again, I realized that the focus would be shifted.  I would have even less time for what had become the job I wanted to do in future. So I decided to say goodbye and work as a software tester from now on.

@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Pilot Period',
   tagline: 'A tech & testing blog',
-  url: 'https://viper3400.github.io/',
+  url: 'https://www.pilot-period.org/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -23,8 +23,8 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'de',
-    locales: ['de', 'en'],
+    defaultLocale: 'en',
+    locales: ['en', 'de'],
   },
 
   presets: [
