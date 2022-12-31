@@ -9,7 +9,7 @@ const config = {
   title: 'Pilot Period',
   tagline: 'A tech & testing blog',
   url: 'https://viper3400.github.io/',
-  baseUrl: '/pilot-period/',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
