@@ -18,7 +18,7 @@ Nachdem ich meine Fachhochschulausbildung vor 15+ Jahren erfolgreich beendet hat
 
 Mein Job war es, bei unsren Kunden vor Ort im Rahmen von Einführungsprojekten, die Software zu installieren, zu konfigurieren und in Betrieb zu nehmen. Weiterhin stellte ich vom Büro aus den Remote-Support sicher. Traten im Betrieb Fehler auf, war ich die erste Anlaufstelle für den Kunden. 
 
-Aus heutiger Sicht scheint mir das undenkbar, aber zu dieser Zeit existierte in meinem Team weder ein dezidierter Tester oder Testprozess, noch gab es einen klar definierten Releaseprozess. Die Entwickler testeten selber, sendeten Debug-Versionen (all in one *.exe Dateien) per E-Mail zum Kunden. Der Kunde probierte es dann aus und nahm die Version in Betrieb.
+Zu dieser Zeit gab es in meinem Team weder einen Tester oder einen Testprozess. Es gab auch keinen klar definierten Releaseprozess. Die Entwickler testeten selber, sendeten Debug-Versionen (all in one *.exe Dateien) per E-Mail zum Kunden. Der Kunde probierte es dann aus und nahm die Version in Betrieb.
 
 Dies war mein erster Kontakt mit einem Mantra, welches mich bis heute begleitet:
 

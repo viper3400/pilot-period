@@ -17,7 +17,7 @@ After successfully graduating from technical college about 15+ years ago, I was 
 
 My job was to install, configure and take the software into production at the customer's site (within the scope of implementation projects). Furthermore, I provided remote support from the office. If errors occurred during operation, I was the first point of contact for the customer. 
 
-From today's point of view this seems unthinkable, but at that time there was no dedicated tester or test process in my team. Nor was there a clearly defined release process. The developers tested themselves, sent debug versions (all in one *.exe files) via email to the customer. The customer then tried it out and put the version into operation.
+At this time there was no tester or test process in my team. Nor was there a clearly defined release process. The developers tested themselves, sent debug versions (all in one *.exe files) via email to the customer. The customer then tried it out and put the version into operation.
 
 This was my first contact with a mantra, which is still with me today:
 
