@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[184],{4272:e=>{e.exports=JSON.parse('[{"label":"SoftwareTesting","permalink":"/en/tags/software-testing","count":1},{"label":"QualityAssurance","permalink":"/en/tags/quality-assurance","count":1}]')}}]);

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Pilot Period Blog</title>
-        <link>https://viper3400.github.io/pilot-period/</link>
+        <link>https://viper3400.github.io/</link>
         <description>Pilot Period Blog</description>
         <lastBuildDate>Thu, 01 Dec 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -10,7 +10,7 @@
         <language>de</language>
         <item>
             <title><![CDATA[Wie man Software Tester wird]]></title>
-            <link>https://viper3400.github.io/pilot-period/how</link>
+            <link>https://viper3400.github.io/how</link>
             <guid>how</guid>
             <pubDate>Thu, 01 Dec 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[To read this article in English, change the language in the menu.]]></description>
