@@ -7,13 +7,66 @@ draft: true
 ---
 ## Introduction
 
-In preparation of a migration project of mine I like to learn more about monorepos,
-about creating libraries in Typescript and how to publish them to a public repository like npmjs.
+Until now, I've done some personal C# projects and some Typescript projects.
 
-Well I did all of this before, but I was just following tutorials, 
-used templates or doing copy & paste to gain quick wins. 
+When I started to become a developer I did this by following tutorials, using templates and doing copy & paste.
 
-Now I want to dive a bit deeper.
+I used monorepos created libraries, published and reused them. Focus was always to gain quick wins, not to dive deep into this or that.
+
+## A Minimal Typescript Project
+
+In a first step I want to set up a minimal typescript project the exports some module and reuse this in another project. I want to do all this on my local development machine.
+
+Most tutorials and templates tend to loose focus and add sugar, that makes it hard to understand the basic dough.
+
+And to make it clear, it's not much that it needs.
+
+```
+mkdir minimal-ts-project
+cd minimal-ts-project
+```
+
+Then create a `package.json` and a `tsconfig.json` in your projects root folder. Leave the `tsconfig.json` empty. For the `package.json` use something like this:
+
+```json title="package.json"
+{
+    "name": "minimal-ts-project",
+    "version": "0.0.1",
+    "devDependencies": {
+        "typescript": "^5.0.4"
+    }
+}
+```
+
+The `package.json` contains information about you project. But just `name` and `version` are mandatory fields. As we want to use typescript, we add a `devDependency` to it.
+
+Then run `npm install` and that's it! You can now start your project.
+
+Create a `sample-service.ts`:
+
+```typescript title="sample-service.ts"
+function sum(operator1: number, operator2: number) {
+    return operator1 + operator2
+}
+
+const result = sum(4, 2);
+console.log("Sum is: " + result);
+```
+
+As we are using typescript we have to transpile our code by calling `npx tsc`. As our `tsconfig.json` file is empty, this call will use default build values and generate a `sample-service.js` file.
+
+We can now execute our code using Node:
+
+```bash
+$> node sample-serivce.js
+Sum is: 6
+```
+
+:::info npx and tsc
+`tsc` stands for TypeScript Compiler and is a command line tool that compiles TypeScript into JavaScript that can be executed. Always remember, that ["TypesScript ist JavaScript with syntax for types"](https://www.typescriptlang.org/). `npx` is a command line tool that comes with `npm`. It can execute global and local `node_modules`.
+
+As we referenced TypeScript in our `package.json` via `npm install` before, we installed `tsc` as well.
+:::
 
 In a first step I want to 
 - set up a Typescript project from scratch
@@ -37,21 +90,21 @@ My basic setup for managing my local NodeJs environment is [volta](https://volta
 
 ## Set up Typescript
 
-To get started I follow the official [Typescript documentation](https://www.typescriptlang.org).
+To get started let's start simple and just follow the official [Typescript documentation](https://www.typescriptlang.org).
 
 ```bash
-mkdir pg_lib_experiment_1
-cd pg_lib_experiment_1
+mkdir lib1
+cd lib1
 npm init
 ```
 
 This will start an interactive tool that does not more than create a `package.json`:
 
-```json
+```json title="package.json"
 {
-  "name": "@viper3400/pg_lib_experiment_1",
-  "version": "1.0.0",
-  "description": "This is a playground and experimental library.",
+  "name": "@viper3400/ts-experiment-lib1",
+  "version": "0.0.0",
+  "description": "Library 1 for my ts-experiment",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -72,7 +125,7 @@ npx tsc --init
 
 The last command generates a default `tsconfig.json`, visit https://aka.ms/tsconfig to read more about this file:
 
-```json
+```json title="tsconfig.json"
 {
   "compilerOptions": {
     "target": "es2016",                              
@@ -98,6 +151,10 @@ I stage my changes and do a first initial commit.
 What a about a test driven approach right away from the start? I love [Serenity/JS](https://serenity-js.org/).
 Serenity/JS supports a wide range of underlying test frameworks. For the ease of use
 I go just with mocha for now.
+
+### Set up Mocha
+
+`npm install @types/node @types/expect @types/mocha --save-dev`
 
 ### Set up Serenity/JS
 
@@ -258,3 +315,13 @@ export class Calculator {
 If we now run `npm test` our Serenity/JS tests should run green.
 
 ## Linting
+
+## Set up the monorepo
+
+```
+mkdir monorepo
+cd monorepo
+npm init
+npm install lerna --save-dev
+npx lerna init
+```
