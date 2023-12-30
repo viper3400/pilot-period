@@ -4,9 +4,6 @@ title: How to become a software tester
 authors: [jang]
 tags: [SoftwareTesting, QualityAssurance]
 ---
-
-_Um diesen Artikel auf Deutsch zu lesen, ändere bitte die Sprache im Menü._
-
 ## About how to become a software tester
 
 Well, you can google this and get a lot of valid answers.
