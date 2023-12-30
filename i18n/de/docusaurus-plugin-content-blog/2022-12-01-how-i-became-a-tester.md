@@ -5,9 +5,6 @@ authors: [jang]
 tags: [SoftwareTesting, QualityAssurance]
 ---
 
-_To read this article in English, change the language in the menu._
-
-
 ## Darüber, wie man Software Tester wird
 
 Nun, diese Frage kannst du eigentlich gleich googeln und du wirst viele richtige Antworten finden. 

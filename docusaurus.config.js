@@ -38,7 +38,10 @@ const config = {
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },*/
-        docs: false,
+        docs: {
+          routeBasePath: '/docs', // Serve the docs at the site's root
+          /* other docs plugin options */
+        },
         blog: {
           routeBasePath: '/',
           showReadingTime: true,
@@ -72,14 +75,24 @@ const config = {
           },*/
           /*{to: '/blog', label: 'Blog', position: 'left'},*/
           {
+            href: '/',
+            label: 'Blog',
+            position: 'left',
+          },
+          {
+            href: '/docs/about',
+            label: 'About',
+            position: 'left',
+          },
+          {
             href: 'https://github.com/viper3400',
             label: 'GitHub',
             position: 'right',
           },
-          {
+          /*{
             type: 'localeDropdown',
-            position: 'left',
-          },
+            position: 'right',
+          }*/
         ],
       },
       footer: {
@@ -109,6 +122,10 @@ const config = {
                 label: 'Xing',
                 href: 'https://www.xing.com/profile/Jan_Graefe2/cv',
               },
+              {
+                label: 'LinkedIn',
+                href: 'https://www.linkedin.com/in/jan-graefe-5b515b260/',
+              },
             ],
           },
           {
@@ -117,6 +134,19 @@ const config = {
               {
                 label: 'Docusaurus',
                 href: 'https://docusaurus.io/',
+              },
+            ]
+          },
+          {
+            title: 'Content creation assisted by',
+            items: [
+              {
+                label: 'ChatGPT',
+                href: 'https://chat.openai.com',
+              },
+              {
+                label: 'Pixabay',
+                href: 'https://pixabay.com',
               },
             ]
           }
