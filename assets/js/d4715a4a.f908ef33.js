@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[37],{4090:e=>{e.exports=JSON.parse('{"label":"one-team","permalink":"/tags/one-team","allTagsPath":"/tags","count":1,"unlisted":false}')}}]);
