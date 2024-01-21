@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[6514],{9781:s=>{s.exports=JSON.parse('{"label":"cross-functional","permalink":"/de/tags/cross-functional","allTagsPath":"/de/tags","count":1,"unlisted":false}')}}]);

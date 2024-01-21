@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[5407],{9936:e=>{e.exports=JSON.parse('{"label":"tesing","permalink":"/de/tags/tesing","allTagsPath":"/de/tags","count":1,"unlisted":false}')}}]);
