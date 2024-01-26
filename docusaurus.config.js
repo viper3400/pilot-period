@@ -158,6 +158,15 @@ const config = {
         darkTheme: prismThemes.dracula,
       },
     }),
+  plugins: [
+    [
+      require.resolve('./src/plugins/piwik/index.js'),
+      {
+          id: '16f7a2cc-833a-4baf-8adc-40a9cc9ff38e',
+          enable: true,
+      }
+    ]  
+  ]
 };
 
 module.exports = config;
