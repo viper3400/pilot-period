@@ -1,0 +1,144 @@
+---
+slug: serenityjs-tables-peql
+title: HTML Tables in Browser Automation Using Serenity/JS
+authors: [jang]
+tags: [testing, automation, serenity-js, hands-on]
+---
+>***Unravel the Complexity of HTML Table Automation with Serenity/JS! Tired of wrestling with hierarchical selectors? Serenity/JS introduces the Page Element Query Language (PEQL), making HTML table automation a breeze. Dive into hands-on examples, from pinpointing rows by index to dynamically locating them based on content. Empower your web automation journey with Serenity/JS – where simplicity meets precision!***
+## Automating HTML Tables with Serenity/JS
+
+If you're dealing with web automation and HTML tables, 
+Serenity/JS provides a powerful and expressive way to interact with page elements. 
+
+Traditional HTML selectors, such as those
+based on CSS or XPath, are often hierarchical. 
+However, tables are conceptually two-dimensional, 
+with rows and columns, making it less straightforward 
+to express certain queries using these selectors.
+
+![Serentiy/JS](/img/SerenityJS.png)
+
+In this article, we'll explore the usage of the 
+[Page Element Query Language (PEQL)](https://serenity-js.org/handbook/web-testing/page-element-query-language/)
+in Serenity/JS for automating HTML tables, focusing on 
+- scenarios where you know the index of the row you want to access and 
+- situations where you need to locate a row based on its content.
+
+:::tip
+Examples on this page where tested with Serenity/JS version 3.15.0.
+To get started with Serenity/JS have a look into the
+[Serenity/JS project templates](https://serenity-js.org/handbook/getting-started/project-templates/)
+:::
+
+
+## Knowing the Index of the Row
+
+![Example Table](/img/Example-Table.png)
+
+Consider a scenario where you have a simple table, like [this one from w3schools.com](https://www.w3schools.com/html/html_tables.asp), and you know the index of the row you want to access. The following example demonstrates how to use Serenity/JS to interact with the table:
+
+```typescript
+import { Ensure, equals } from '@serenity-js/assertions';
+import { describe, it } from '@serenity-js/playwright-test';
+import { By, Navigate, PageElements, Text } from '@serenity-js/web';
+
+const CustomersTable = () => PageElement.located(By.css('#customers'))
+    .describedAs('customer table')
+
+const TableRows = () => PageElements.located(By.css('tr'))
+    .describedAs('all table rows').of(CustomersTable());
+
+const TableColumns = () => PageElements.located(By.css('td'))
+    .describedAs('all table columns')
+    .of(CustomersTable())
+
+const TableColumnsInRow = (index: number) => 
+    TableColumns().of(TableRows().nth(index));
+
+const CompanyInRow = (index: number) => TableColumnsInRow(index).nth(0)
+    .describedAs(`company column in row ${index}`);
+
+const ContactInRow = (index: number) => TableColumnsInRow(index).nth(1)
+    .describedAs(`contact column in row ${index}`);
+
+const CountryInRow = (index: number) => TableColumnsInRow(index).nth(2)
+    .describedAs(`country column in row ${index}`);
+
+describe('table selector', () => (
+    it('ensures text of columns in a row', async ({actor}) => (
+        actor.attemptsTo(
+            Navigate.to('https://www.w3schools.com/html/html_tables.asp'),
+            Ensure.that(Text.of(CompanyInRow(1)), equals('Alfreds Futterkiste')),
+            Ensure.that(Text.of(ContactInRow(1)), equals('Maria Anders')),
+            Ensure.that(Text.of(CountryInRow(1)), equals('Germany'))
+        ))
+    )
+));
+```
+The output in the Serenity/JS report will look like follows:
+
+```
+✓ Alice ensures that the text of company column in row 1 does equal 'Alfreds Futterkiste'
+✓ Alice ensures that the text of contact column in row 1 does equal 'Maria Anders'
+✓ Alice ensures that the text of country column in row 1 does equal 'Germany'
+```
+## Unknown Row Index: Locating Rows by Content
+
+In some scenarios, the table's sort order might not be defined, and the index of the row under test may vary. In such cases, you can locate a row based on expected content. Let's say we want to ensure that the contact name for "Centro comercial Moctezuma" in Mexico equals "Francisco Chang." Here's how you can achieve this with Serenity/JS:
+
+```typescript
+import { contain, Ensure, equals } from '@serenity-js/assertions';
+import { describe, it } from '@serenity-js/playwright-test';
+import { By, Navigate, PageElement, PageElements, Text } from '@serenity-js/web';
+
+const CustomersTable = () => PageElement.located(By.css('#customers'))
+    .describedAs('customer table')
+
+const TableRows = () => PageElements.located(By.css('tr'))
+    .describedAs('all table rows').of(CustomersTable());
+
+const CompanyColumns = () => PageElements.located(By.css('td:nth-child(1)'))
+    .describedAs('company columns');
+
+const ContactColumns = () => PageElements.located(By.css('td:nth-child(2)'))
+    .describedAs('contact columns');
+
+const CountryColumns = () => PageElements.located(By.css('td:nth-child(3)'))
+    .describedAs('country columns');
+
+const ContactColumByCountryAndCompany = (country: string, company: string) => 
+    ContactColumns().of(
+        TableRows()
+            .where(Text.ofAll(CountryColumns()), contain(country))
+            .where(Text.ofAll(CompanyColumns()), contain(company))
+            .first())
+        .first();
+
+describe('table selector', () => (
+    it('ensures text of columns in a row', async ({actor}) => (
+        actor.attemptsTo(
+            Navigate.to('https://www.w3schools.com/html/html_tables.asp'),
+            Ensure.that(Text.of(ContactColumByCountryAndCompany(
+                'Mexico','Centro comercial Moctezuma')),
+            equals('Francisco Chang'))
+        ))
+    )
+));
+```
+
+In this example, we introduce new `PageElements` such as `CompanyColumn`, `ContactColumn`, and `CountryColumn` to represent individual columns. The `ContactColumByCountryAndCompany` function is used to locate the contact column by matching the country and company. We utilize the `where` method to filter rows based on the content of the country and company columns and then take the first result.
+
+The report remains readable domain specific language:
+
+```
+✓ Alice navigates to 'https://www.w3schools.com/html/html_tables.asp'
+✓ Alice ensures that the text of the first of contact columns 
+    of the first of all table rows of customer table where the 
+    text of country columns does contain 'Mexico' and the text 
+    of company columns does contain 'Centro comercial Moctezuma' 
+    does equal 'Francisco Chang'
+```
+
+It's important to note that in this use case, we assume there is only one result for the given combination of country and company. Therefore, we always take the first result to ensure consistency.
+
+By using Serenity/JS and the [Page Element Query Language (PEQL)](https://serenity-js.org/handbook/web-testing/page-element-query-language/), you can create expressive and maintainable test scripts for HTML table automation. These examples showcase how to handle scenarios where you know the row index and when you need to locate rows based on their content, providing a flexible and powerful solution for web automation.

@@ -45,6 +45,7 @@ const config = {
         blog: {
           routeBasePath: '/',
           showReadingTime: true,
+          blogSidebarCount: 15,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           //editUrl:
