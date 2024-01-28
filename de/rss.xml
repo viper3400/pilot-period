@@ -9,17 +9,17 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>de</language>
         <item>
-            <title><![CDATA[HTML Tables in Browser Automation Using Serenity/JS]]></title>
+            <title><![CDATA[HTML Tables in Browser Automation Using Serenity/JS and Playwright]]></title>
             <link>https://www.pilot-period.org/de/serenityjs-tables-peql</link>
             <guid>https://www.pilot-period.org/de/serenityjs-tables-peql</guid>
             <pubDate>Sun, 28 Jan 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[Unravel the Complexity of HTML Table Automation with Serenity/JS! Tired of wrestling with hierarchical selectors? Serenity/JS introduces the Page Element Query Language (PEQL), making HTML table automation a breeze. Dive into hands-on examples, from pinpointing rows by index to dynamically locating them based on content. Empower your web automation journey with Serenity/JS – where simplicity meets precision!]]></description>
+            <description><![CDATA[Unravel the Complexity of HTML Table Automation with Serenity/JS and Playwright! Tired of wrestling with hierarchical selectors? Serenity/JS introduces the Page Element Query Language (PEQL), making HTML table automation a breeze. Dive into hands-on examples, from pinpointing rows by index to dynamically locating them based on content. Empower your web automation journey with Serenity/JS – where simplicity meets precision!]]></description>
             <content:encoded><![CDATA[<blockquote>
-<p><em><strong>Unravel the Complexity of HTML Table Automation with Serenity/JS! Tired of wrestling with hierarchical selectors? Serenity/JS introduces the Page Element Query Language (PEQL), making HTML table automation a breeze. Dive into hands-on examples, from pinpointing rows by index to dynamically locating them based on content. Empower your web automation journey with Serenity/JS – where simplicity meets precision!</strong></em></p>
+<p><em><strong>Unravel the Complexity of HTML Table Automation with Serenity/JS and Playwright! Tired of wrestling with hierarchical selectors? Serenity/JS introduces the Page Element Query Language (PEQL), making HTML table automation a breeze. Dive into hands-on examples, from pinpointing rows by index to dynamically locating them based on content. Empower your web automation journey with Serenity/JS – where simplicity meets precision!</strong></em></p>
 </blockquote>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="automating-html-tables-with-serenityjs">Automating HTML Tables with Serenity/JS<a href="https://www.pilot-period.org/de/serenityjs-tables-peql#automating-html-tables-with-serenityjs" class="hash-link" aria-label="Direkter Link zur Automating HTML Tables with Serenity/JS" title="Direkter Link zur Automating HTML Tables with Serenity/JS">​</a></h2>
 <p>If you're dealing with web automation and HTML tables,
-Serenity/JS provides a powerful and expressive way to interact with page elements.</p>
+<a href="https://serenity-js.org/" target="_blank" rel="noopener noreferrer">Serenity/JS</a> provides a powerful and expressive way to interact with page elements.</p>
 <p>Traditional HTML selectors, such as those
 based on CSS or XPath, are often hierarchical.
 However, tables are conceptually two-dimensional,
@@ -34,8 +34,11 @@ in Serenity/JS for automating HTML tables, focusing on</p>
 <li>situations where you need to locate a row based on its content.</li>
 </ul>
 <div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>Examples on this page where tested with Serenity/JS version 3.15.0.
-To get started with Serenity/JS have a look into the
-<a href="https://serenity-js.org/handbook/getting-started/project-templates/" target="_blank" rel="noopener noreferrer">Serenity/JS project templates</a></p></div></div>
+To get started with Serenity/JS and Playwright have a look into the
+<a href="https://github.com/serenity-js/serenity-js-playwright-test-template" target="_blank" rel="noopener noreferrer">Serenity/JS Playwright project template</a>.</p><p><a href="https://serenity-js.org/" target="_blank" rel="noopener noreferrer">Serenity/JS</a> is a modular and extensible abstraction layer that works seamlessly
+with integration tools like Playwright, Selenium, WebdriverIO, Appium, or Axios,
+and gives you a consistent, intuitive, and vendor-agnostic API to work with.
+It integrates with popular test runners like Cucumber, Jasmine, Mocha, and Playwright Test.</p><p>Have a look into the other <a href="https://serenity-js.org/handbook/getting-started/project-templates/" target="_blank" rel="noopener noreferrer">Serenity/JS project templates</a> as well.</p></div></div>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="knowing-the-index-of-the-row">Knowing the Index of the Row<a href="https://www.pilot-period.org/de/serenityjs-tables-peql#knowing-the-index-of-the-row" class="hash-link" aria-label="Direkter Link zur Knowing the Index of the Row" title="Direkter Link zur Knowing the Index of the Row">​</a></h2>
 <p><img decoding="async" loading="lazy" alt="Example Table" src="https://www.pilot-period.org/de/assets/images/Example-Table-5e88eb1df280084919fbcfde0e60d475.png" width="1980" height="594" class="img_ev3q"></p>
 <p>Consider a scenario where you have a simple table, like <a href="https://www.w3schools.com/html/html_tables.asp" target="_blank" rel="noopener noreferrer">this one from w3schools.com</a>, and you know the index of the row you want to access.</p>
