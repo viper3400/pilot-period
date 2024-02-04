@@ -1,0 +1,225 @@
+---
+slug: serenityjs-protractor2playwright
+title: Serenity/JS - Migrate from Protractor to Playwright
+authors: [jang]
+tags: [testing, automation, serenity-js, hands-on]
+---
+>***When I chose Serenity/JS as a vendor-agnostic API, my intention was to isolate my test specification from the test runner.
+Today, I seamlessly transitioned from Protractor to Playwright in less than 10 minutes. 
+The kicker? No need for me, any AI, or non-AI tool to lay a finger on selectors or test specs. 
+All it took was a swift config update.***
+
+In this blog post, we'll explore a seamless transition from Protractor to Playwright
+in a Serenity/JS project, all achieved in a mere 10 minutes. Witness how the power 
+of Serenity/JS makes this migration effortless, requiring no modifications to your 
+selectors or Jasmine test specifications. Let's dive in and unlock a smoother,
+more efficient testing experience.
+
+![Serentiy/JS](/img/SerenityJS.png)
+
+:::tip Any browser, any device, any interface
+«[Serenity/JS](https://serenity-js.org/) is a modular and extensible abstraction 
+layer that works seamlessly with integration tools like Playwright, 
+Selenium, WebdriverIO, Appium, or Axios, and gives you a consistent, 
+intuitive, and vendor-agnostic API to work with.»
+:::
+
+## Prepare Example project
+
+_(Examples on this page where tested with Serenity/JS version 3.16.0)_
+
+Let's start by setting up a small example project based on the Protractor with Jasmine 
+template provided by Serenity/JS, as this combination was the most common.
+
+Clone the [serenity-js-jasmine-protractor-template](https://github.com/serenity-js/serenity-js-jasmine-protractor-template), 
+install the NodeJS dependencies, and start a test run to ensure that the template is working.
+
+```sh
+git clone https://github.com/serenity-js/serenity-js-jasmine-protractor-template.git
+cd serenity-js-mocha-protractor-template
+npm install
+npm test
+```
+## Migration
+
+### Additional Dependencies
+
+Add additional dependencies to your project:
+
+```sh
+npm install @serenity-js/playwright
+npm install playwright
+npm install mocha
+npm install @serenity-js/mocha
+```
+
+Install Playwright:
+```sh
+npx playwright install
+```
+
+### Mocha Configuration
+
+Add a `.mocharc.yml` file to the root directory of you project:
+
+```yml title=".mocharc.yml"
+check-leaks: false
+color: true
+diff: true
+full-trace: true
+reporter: '@serenity-js/mocha'
+require:
+  - 'ts-node/register'
+  - 'src/serenity.config.ts'
+timeout: 30000
+v8-stack-trace-limit: 100
+spec:
+  - './spec/**/*.spec.ts'
+```
+### Serenity/JS Actors
+
+Create a `src` folder in your project root and create an `Actors.ts` file:
+
+```ts title="./src/Actors.ts"
+import { Actor, Cast, TakeNotes } from '@serenity-js/core';
+import { BrowseTheWebWithPlaywright, PlaywrightOptions } from '@serenity-js/playwright';
+import { CallAnApi } from '@serenity-js/rest';
+import * as playwright from 'playwright-core';
+
+export class Actors implements Cast {
+    constructor(
+        private readonly page: playwright.Page,
+        private readonly options: PlaywrightOptions,
+    ) {
+    }
+
+    prepare(actor: Actor): Actor {
+        return actor.whoCan(
+            BrowseTheWebWithPlaywright.usingPage(this.page, this.options),
+            TakeNotes.usingAnEmptyNotepad(),
+            CallAnApi.at(this.options.baseURL)
+        );
+    }
+}
+```
+:::tip Remark
+There are two ways to give an actor the ability 
+to [BrowseTheWebWithPlaywright](https://serenity-js.org/api/playwright/class/BrowseTheWebWithPlaywright/):
+1. `.using(browser)`
+
+A new browser instance is created for every `it` block in your Mocha `*.spec.ts` file. 
+This means you **cannot access** a page you've navigated to in your first `it` block 
+in your second `it` block.
+
+2. `.usingPage(page)`
+
+The browser instance, or Playwright page instance, will be re-used for the entire
+`*.spec.ts` file. 
+This means you **can access** a page you've navigated to in your first `it` block in 
+your second `it` block.
+:::
+
+### Serenity/JS Configuration
+
+Create a `serenity.config.ts` file in the same `src` folder.
+
+```ts title="./src/serenity.config.ts"
+import { configure, Duration, NoOpDiffFormatter } from '@serenity-js/core';
+import { BrowserContextOptions } from 'playwright';
+import * as playwright from 'playwright-core';
+
+import { Actors } from './Actors';
+
+let browser: playwright.Browser;
+let page: playwright.Page;
+
+export const mochaHooks = {
+    async beforeAll(): Promise<void> {
+        browser = await playwright.chromium.launch({
+            headless: false
+        });
+
+        const contextOptions : BrowserContextOptions = { baseURL: 'https://serenity-js.org' }
+        const context = await browser.newContext(contextOptions);
+        page = await context.newPage();
+
+        configure({
+            actors: new Actors(page, {
+                defaultNavigationTimeout:   Duration.ofSeconds(2).inMilliseconds(),
+                defaultTimeout:             Duration.ofMilliseconds(750).inMilliseconds(),
+            }),
+            diffFormatter: new NoOpDiffFormatter(),
+            crew: [
+                '@serenity-js/console-reporter',
+                [ '@serenity-js/serenity-bdd',          { specDirectory: 'spec' }], 
+                [ '@serenity-js/web:Photographer',      { strategy: 'TakePhotosOfInteractions'    } ],
+                [ '@serenity-js/core:ArtifactArchiver', { outputDirectory: 'target/site/serenity' } ],
+            ]
+        });
+    },
+
+    async afterAll(): Promise<void> {
+        if (browser) {
+            await browser.close()
+        }
+    }
+}
+```
+
+In our example `Actors` class, we initiate a `Browser` object, create a new
+`Context` with a new `Page` and give the `Actor` the `Ability` to interact
+with this page.
+
+### Angular Sychronisation in Non-Angular Project
+
+In the `serenity-js_website.spec.ts` example file, remove the `UseAngularSynchronisation`, as the page we're
+interacting with is not even an Angular page.
+
+Uncomment the following line in `protractor.conf.ts`. so we will be able to use
+Protractor and Playwright side by side.
+
+```js title="./protractor.conf.js"
+    onPrepare: function() {
+         ...
+         browser.waitForAngularEnabled(false);
+    },
+```
+### Additional npm Scripts
+
+In the script section of your `package.json` and two new scripts:
+
+```json title="./package.json"
+...
+  "scripts": {
+    ...
+    "test:execute:playwright": "mocha --config .mocharc.yml",
+    "test:playwright": "failsafe clean test:execute:playwright test:report",
+    ... 
+  }
+```
+
+## First Testrun Using Playwright
+
+Congratulations! You're done. Just run `npm run test:playwright`.
+You can still run the tests with Protractor by running `npm test`. 
+If you're satisfied with Playwright, you can remove all dependencies
+from Protractor and Jasmine from your project now.
+
+:::tip Mocha vs. Playwright Test
+In this scenario, we use Mocha as the test runner for Playwright,
+instead of the native Playwright test runner.
+Migration to the Playwright test runner may also be straightforward,
+but you will have to replace some imports in your files.
+For more information, refer to the 
+[Serenity/JS handbook](https://serenity-js.org/handbook/test-runners/playwright-test/#examples-and-project-templates)
+:::
+
+## Conclusion
+
+In just a brief span, we've navigated the transition from Protractor to Playwright
+with Serenity/JS. The beauty lies not just in the simplicity of the process but in 
+the retained integrity of your existing codebase. As you embark on your testing 
+endeavors with this upgraded setup, feel empowered by the speed, efficiency, 
+and flexibility now at your fingertips. The synergy of Protractor's familiarity, 
+Playwright's power, and Serenity/JS's adaptability ensures a testing ecosystem 
+that not only meets but exceeds your expectations. Happy testing!
