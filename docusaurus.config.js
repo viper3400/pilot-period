@@ -81,6 +81,11 @@ const config = {
             position: 'left',
           },
           {
+            href: '/docs/serenity-js',
+            label: 'Serenity/JS',
+            position: 'left',
+          },
+          {
             href: '/docs/about',
             label: 'About',
             position: 'left',
