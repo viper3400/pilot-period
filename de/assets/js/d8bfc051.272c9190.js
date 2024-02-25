@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[8658],{3324:e=>{e.exports=JSON.parse('{"label":"bdd","permalink":"/de/tags/bdd","allTagsPath":"/de/tags","count":1,"unlisted":false}')}}]);
