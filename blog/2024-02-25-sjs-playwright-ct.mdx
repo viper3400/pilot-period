@@ -1,0 +1,449 @@
+---
+slug: sjs-playwright-ct
+title: Component Testing with React/Next.js, Playwright, and Serenity/JS
+authors: [jang]
+tags: [testing, automation, serenity-js, hands-on, BDD]
+---
+
+>***Continuing my series about Serenity/JS:
+Dive into the potent pairing of Serenity/JS and Playwright.
+Witness how this winning combination revolutionizes component testing.
+Ready to elevate your testing game?***
+
+Playwright introduces an 
+[experimental component testing approach](https://playwright.dev/docs/test-components).
+In this tutorial, we'll explore how to seamlessly integrate component testing into a 
+React/Next.js application using Playwright in conjunction with 
+[Serenity/JS](https://serenity-js.org/), a powerful testing framework.
+
+![Serenity/JS](/img/SerenityJS.png)
+
+:::tip
+This tutorial provides a step-by-step guide to set up and execute tests from scratch.
+However, if you prefer to skip these steps, you can access the complete example code in
+[this GitHub repository](https://github.com/viper3400/next-sjs-ct-tutorial).
+:::
+
+## Setting Up an Example Application
+
+Before diving into testing, let's establish a baseline React application.
+Following the [recommended guidelines](https://react.dev/learn/start-a-new-react-project),
+we'll leverage [Next.js](https://nextjs.org/) as our framework of choice.
+
+We'll initialize a Next.js application in
+[non-interactive mode](https://nextjs.org/docs/pages/api-reference/create-next-app#non-interactive),
+incorporating TypeScript and Tailwind CSS.
+
+```sh
+npx create-next-app@latest next-sjs-ct-tutorial --ts --tailwind --eslint --app --src-dir --import-alias "@/*"
+cd next-sjs-ct-tutorial
+npm run dev[def]
+```
+
+Once completed, your newly created Next.js application will be
+accessible at http://localhost:3000/.
+
+:::info[Mind the Node.js version]
+Ensure that you've installed at least Node.js version 18.17.0 for Next.js,
+the minimum required version by the time of writing.
+You can manage Node.js versions using tools like [Volta](https://volta.sh/).
+For example, pinning the Node.js version to the latest available, currently 20.11.1,
+can be achieved with:
+
+```sh
+volta pin node@latest
+git add .
+git commit -m "Pinned Node.js version using Volta"
+```
+:::
+
+Now, let's enhance our basic page by creating a small application with the following
+user story:
+
+:::note[User Story]
+As a user, I want to interact with a counter component that displays a count value and allows me to increase or decrease it within a specified range.
+The component should feature two buttons: "Increase" and "Decrease."
+
+When I click the "Increase" button, the displayed count value should increment, providing immediate visual feedback. Conversely, clicking the "Decrease" button should decrement the count value. However, these actions should be constrained within a defined range, preventing the count from exceeding a maximum of 10 and a minimum value of 0.
+
+To ensure intuitive interaction, the buttons should visually indicate when they are disabled, preventing further increment or decrement operations beyond the defined range. This clear visual feedback helps me understand the available actions at a glance, enhancing my overall user experience with the counter component.
+:::
+
+Create a `./src/components/Counter.tsx` file within your project to implement this 
+functionality.
+
+```tsx title="./src/component/Counter.tsx"
+'use client'
+
+import { useState } from "react"
+
+export const Counter = () => {
+    // Define state variables for count and minimum/maximum values
+    const [count, setCount] = useState(0)
+    const minCount = 0
+    const maxCount = 10
+    
+    // Function to handle click on the "Increase" button
+    function onIncreaseButtonClick(): void {
+        // Check if count is less than maximum allowed count
+        if (count < maxCount) {
+            // Increment count by 1
+            setCount(count + 1)
+        }
+    }
+
+    // Function to handle click on the "Decrease" button
+    function onDecreaseButtonClick(): void {
+        // Check if count is greater than minimum allowed count
+        if (count > minCount) {
+            // Decrement count by 1
+            setCount(count - 1)
+        }
+    }
+
+    // Define button styles for normal, hover, and disabled states
+    const buttonStyle = "bg-blue-500 text-white font-bold py-2 px-4 rounded"
+    const hoverStyle = "hover:bg-blue-700"
+    const disabledButtonStyle = "bg-gray-400 cursor-not-allowed"
+
+    return (
+        <>
+          {/* Display the current count */}
+          <div className="flex space-x-2">
+            <div>Count:</div>
+            <div
+                data-testid="count">
+                {count}
+            </div>
+          </div>
+          {/* Render buttons for incrementing and decrementing the count */}
+          <div className="flex space-x-4">
+            {/* Increase button */}
+            <button 
+                className={`${buttonStyle} ${count >= maxCount ? disabledButtonStyle : hoverStyle}`}
+                onClick={onIncreaseButtonClick}
+                disabled={count === maxCount}
+                data-testid="button-increase">
+                Increase
+            </button>
+            {/* Decrease button */}
+            <button 
+                className={`${buttonStyle} ${count === minCount ? disabledButtonStyle : hoverStyle}`}
+                onClick={onDecreaseButtonClick}
+                disabled={count === minCount }
+                data-testid="button-decrease">
+                Decrease
+            </button>
+           </div>
+        </>
+    )
+}
+```
+
+Update `./src/app/page.tsx` to include the Counter component on the main page:
+
+```tsx title="./src/app/page.tsx"
+import { Counter } from "@/components/Counter";
+
+export default function Home() {
+  return (
+    <main className="flex min-h-screen flex-col items-center p-24 space-y-4">
+      <Counter />
+    </main>
+  );
+}
+```
+
+With these changes, you can now utilize the increase/decrease counter
+functionality on your Next.js page.
+
+```sh
+git add .
+git commit -m "Implemented Counter"
+```
+
+## Integrating Playwright and Serenity/JS
+
+Now, let's integrate the necessary dependencies for testing, 
+including Playwright and Serenity/JS, along with associated packages 
+for assertions and reporting.
+
+```sh
+npm install --save-dev \
+  @serenity-js/assertions \
+  @serenity-js/console-reporter \
+  @serenity-js/core \
+  @serenity-js/playwright \
+  @serenity-js/playwright-test \
+  @serenity-js/serenity-bdd \
+  @serenity-js/web \
+  @playwright/experimental-ct-react \ 
+  rimraf \
+  npm-failsafe
+```
+
+Update the `package.json` file with scripts for cleaning, executing tests,
+and generating reports using Serenity/JS.
+
+```json title="./package.json"
+[...]
+
+"scripts": { 
+
+    [...]
+
+    "clean": "rimraf dist target",
+    "serenity-bdd:update": "serenity-bdd update",
+    "test:ct": "failsafe clean serenity-bdd:update test:execute test:report",
+    "test:execute": "playwright test -c playwright-ct.config.ts",
+    "test:report": "serenity-bdd run --features ./src/components"
+}
+
+[
+
+...]
+```
+
+Define the Playwright configuration file `playwright-ct.config.ts`, which includes
+settings for test directories, reporters, browser configurations, and other options
+for running the tests.
+
+```ts title="./playwright-ct.config.ts"
+import { defineConfig, devices } from '@playwright/experimental-ct-react'
+import { SerenityOptions } from '@serenity-js/playwright-test'
+
+/**
+ * See https://playwright.dev/docs/test-configuration.
+ */
+export default defineConfig<SerenityOptions>({
+  testDir: './src/components',
+  /* The base directory, relative to the config file, for snapshot files created with toMatchSnapshot and toHaveScreenshot. */
+  snapshotDir: './__snapshots__',
+  /* Maximum time one test can run for. */
+  timeout: 10 * 1000,
+  /* Run tests in files in parallel */
+  fullyParallel: true,
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  forbidOnly: !!process.env.CI,
+  /* Retry on CI only */
+  retries: process.env.CI ? 2 : 0,
+  /* Opt out of parallel tests on CI. */
+  workers: process.env.CI ? 1 : undefined,
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  reporter: [
+    [ 'line' ],
+    [ 'html', { open: 'never' } ],
+    [ '@serenity-js/playwright-test', {
+      crew: [
+        [ '@serenity-js/serenity-bdd', { specDirectory: './src/components' } ],
+        '@serenity-js/console-reporter',
+        [ '@serenity-js/core:ArtifactArchiver', { outputDirectory: './target/site/serenity' } ],
+        // [ '@serenity-js/core:StreamReporter', { outputFile: './target/events.ndjson' }]
+      ],
+    } ],
+  ],
+
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  use: {
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    trace: 'on-first-retry',
+
+    /* Port to use for Playwright component endpoint. */
+    ctPort: 3100,
+
+    /* Set headless: false to see the browser window */
+    headless: true,
+
+    crew: [
+      [ '@serenity-js/web:Photographer', {
+        strategy: 'TakePhotosOfInteractions'
+      } ]
+    ],
+    defaultActorName: 'Tess',
+  },
+
+  /* Configure projects for major browsers */
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+    },
+  ],
+})
+```
+
+In this code block, tasks and page elements for Serenity/JS
+are defined to ensure the functionality of the counter component.
+Tasks include checking button states, verifying count values,
+and other assertions related to the counter component.
+
+```ts title="./src/components/CounterSerenitiy.ts"
+import { Ensure, contain, equals, not } from "@serenity-js/assertions";
+import { Task } from "@serenity-js/core";
+import { By, PageElement, isEnabled, Text, CssClasses } from "@serenity-js/web";
+
+export class CounterSerenity {
+    static CounterLabel = PageElement
+        .located(By.css('[data-testid="count"]'))
+        .describedAs('label that shows the current count')
+
+    static IncreaseButton = PageElement
+        .located(By.css('[data-testid="button-increase"]'))
+        .describedAs('button to increase the count')
+
+    static DecreaseButton = PageElement
+        .located(By.css('[data-testid="button-decrease"]'))
+        .describedAs('button to decrease the count')
+
+    static EnsureIncreaseButtonIsEnabled = () =>
+        Task.where('#actor ensures that increase button is enabled',
+            Ensure.that(
+                CssClasses.of(this.IncreaseButton),
+                not(contain('cursor-not-allowed')))
+        )
+
+    static EnsureIncreaseButtonIsNotEnabled = () =>
+        Task.where('#actor ensures that increase button is not enabled',
+            Ensure.that(
+                CssClasses.of(this.IncreaseButton),
+                contain('cursor-not-allowed'))
+        )
+
+    static EnsureDecreaseButtonIsEnabled = () =>
+        Task.where('#actor ensures that decrease button is enabled',
+            Ensure.that(
+                CssClasses.of(this.DecreaseButton),
+                not(contain('cursor-not-allowed')))
+        )
+
+    static EnsureDecreaseButtonIsNotEnabled = () =>
+        Ensure.that(
+            CssClasses.of(this.DecreaseButton),
+            (contain('cursor-not-allowed'))
+        )
+
+    static EnsureCount = (count: string) =>
+        Task.where(`#actor ensures count label displays a value of ${count}`,
+            Ensure.that(Text.of(this.CounterLabel), equals(count)))
+}
+```
+
+This section contains the test specifications for the Counter component using
+Playwright and Serenity/JS. Tests cover scenarios such as initial state verificatio
+ and interactions to reach upper count limits while ensuring button states and count
+ values are correctly maintained.
+
+```tsx title="./src/components/Counter.spec.tsx"
+import { test as componentTest } from '@playwright/experimental-ct-react'
+import { useBase } from '@serenity-js/playwright-test'
+import { Click, PageElement } from '@serenity-js/web'
+import React from 'react'
+import { Counter } from './Counter'
+import { CounterSerenity } from './CounterSerenity'
+import { Duration, Wait } from '@serenity-js/core'
+
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
+const { it, describe } = useBase(componentTest)
+
+describe('Counter', () => {
+
+    it('ensures initial state', async ({ mount, actor }) => {
+
+        const x = PageElement.from(await mount(
+            <Counter />
+        )).describedAs('counter component')
+
+        await actor.attemptsTo(
+            CounterSerenity.EnsureIncreaseButtonIsEnabled(),
+            CounterSerenity.EnsureDecreaseButtonIsNotEnabled(),
+            CounterSerenity.EnsureCount('0')
+        )
+    })
+
+    it('ensures state after click to upper limit', async ({ mount, actor }) => {
+
+        const x = PageElement.from(await mount(
+            <Counter />
+        )).describedAs('counter component')
+
+        await actor.attemptsTo(
+            CounterSerenity.EnsureIncreaseButtonIsEnabled(),
+            CounterSerenity.EnsureDecreaseButtonIsNotEnabled(),
+            CounterSerenity.EnsureCount('0'),
+            Click.on(CounterSerenity.IncreaseButton),
+            CounterSerenity.EnsureIncreaseButtonIsEnabled(),
+            CounterSerenity.EnsureDecreaseButtonIsEnabled(),
+            CounterSerenity.EnsureCount('1'),
+            Click.on(CounterSerenity.IncreaseButton),
+            Click.on(CounterSerenity.IncreaseButton),
+            Click.on(CounterSerenity.IncreaseButton),
+            Click.on(CounterSerenity.IncreaseButton),
+            Click.on(CounterSerenity.IncreaseButton),
+            CounterSerenity.EnsureIncreaseButtonIsEnabled(),
+            CounterSerenity.EnsureDecreaseButtonIsEnabled(),
+            CounterSerenity.EnsureCount('6'),
+            Click.on(CounterSerenity.IncreaseButton),
+            Click.on(CounterSerenity.IncreaseButton),
+            Click.on(CounterSerenity.IncreaseButton),
+            Click.on(CounterSerenity.IncreaseButton),
+            CounterSerenity.EnsureCount('10'),
+            CounterSerenity.EnsureIncreaseButtonIsNotEnabled(),
+            CounterSerenity.EnsureDecreaseButtonIsEnabled(),
+        )
+    })
+})
+```
+
+Finally, include a basic HTML template `index.html` for the testing page, 
+and create an entry point (index.tsx) for rendering React components.
+
+```html title="./playwright/index.html"
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing Page</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+  </body>
+</html>
+```
+
+```tsx title="./playwright/index.tsx"
+import '../src/app/globals.css'
+```
+
+With everything set up, you can run the tests using `npm run test:ct`, 
+and find the Serenity-BDD report under `./target/site/serenity`.
+
+Before committing the latest changes, update your `.gitignore` file:
+
+```yaml title=".gitignore"
+# serenity-js
+/target/site
+
+# playwright
+/playwright-report
+/playwright/.cache
+```
+
+This concludes our tutorial on simplifying component testing with React/Next.js, 
+Playwright, and Serenity/JS. Happy testing!
+
+:::tip 
+You can find a set of templates at the
+[Serenity/JS GitHub repositories page](https://github.com/orgs/serenity-js/repositories), 
+including a [template for component testing with React](https://github.com/serenity-js/serenity-js-playwright-ct-react-template)
+:::
