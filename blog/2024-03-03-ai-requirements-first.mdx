@@ -1,0 +1,221 @@
+---
+slug: ai-requirements-first
+title: Testing in the Age of AI - Requirements First
+authors: [jang]
+tags: [testing, automation, BDD, TDD]
+---
+> **Did you know that a lot of software defects come from unclear requirements?**
+> **What we're witnessing today is AI attempting to aid in test creation with the**
+> **promise of increasing code coverage. However, this approach often**
+> **focuses on testing our implementations rather than testing against our**
+> **requirements, which I believe is risky.**
+
+## Don't test your implementation
+
+![AI cannot predict the unknown](/img/ai-requirements-first.jpeg)
+
+To illustrate, let's conduct an experiment using our familiar chatbots. I'll present a simple function implementation suitable for our demonstration, intentionally flawed.
+
+> *This is a TS function. Can you generate me a jest test spec for it?*
+
+```ts
+function addTwoNumbers(a: number, b: number): number {
+    return a / b
+}
+```
+
+Here's the response:
+
+> *Sure, here's a Jest test spec for the addTwoNumbers function:*
+
+```ts
+import { addTwoNumbers } from './yourFileName';
+
+describe('addTwoNumbers', () => {
+    it('should correctly add two numbers', () => {
+        // Arrange
+        const a = 5;
+        const b = 3;
+        
+        // Act
+        const result = addTwoNumbers(a, b);
+
+        // Assert
+        expect(result).toEqual(8);
+    });
+
+    it('should handle negative numbers correctly', () => {
+        // Arrange
+        const a = -10;
+        const b = 7;
+
+        // Act
+        const result = addTwoNumbers(a, b);
+
+        // Assert
+        expect(result).toEqual(-3);
+    });
+
+    it('should handle zero correctly', () => {
+        // Arrange
+        const a = 0;
+        const b = 5;
+
+        // Act
+        const result = addTwoNumbers(a, b);
+
+        // Assert
+        expect(result).toEqual(0);
+    });
+
+    // Add more test cases as needed
+});
+```
+
+The generated tests do not account for my implementation; they assume I want to add numbers as the function title suggests. The test will fail. However, this allows me to challenge my code.
+
+Here's, what **Gemini** answered:
+
+> *I'd be glad to provide a Jest test spec for the addTwoNumbers function, incorporating the valuable insights from the ratings and addressing the identified issues:*
+
+```ts
+import { addTwoNumbers } from './path/to/your/function'; // Replace with the actual path
+
+describe('addTwoNumbers', () => {
+  // Test case 1: Basic addition with positive numbers
+  it('should add two positive numbers correctly', () => {
+    expect(addTwoNumbers(5, 3)).toBe(5 / 3); // Corrected the expected result
+  });
+
+  // Test case 2: Addition with negative numbers
+  it('should handle addition with negative numbers', () => {
+    expect(addTwoNumbers(-2, 4)).toBe(-2 / 4); // Corrected the expected result
+  });
+
+  // Test case 3: Division by zero (error handling)
+  it('should throw an error when dividing by zero', () => {
+    expect(() => addTwoNumbers(5, 0)).toThrowError('Division by zero'); // Handle division by zero appropriately
+  });
+
+  // Test case 4: Data type validation (optional)
+  it('should only accept numbers as arguments (optional)', () => {
+    expect(() => addTwoNumbers('five', 3)).toThrowError(
+      'addTwoNumbers: Arguments must be numbers' // Customized error message
+    );
+
+    expect(() => addTwoNumbers(5, 'three')).toThrowError(
+      'addTwoNumbers: Arguments must be numbers' // Customized error message
+    );
+  });
+});
+```
+
+Gemini generated tests that pass. The test reads like an addition is tested, but effectively, it's the division.
+
+To be fair, sometimes the bots detect inconsistencies between the function name and implementation.
+
+However, we miss the point here: 
+
+**What's unknown is if our customer was requiring an addition or a division.**
+
+Either the function implementation is incorrect and should be `a + b`, 
+or there's a naming issue, and it should be named `divideTwoNumbers()`.
+
+So, what are the takeaways?
+
+**1. Testing should align with requirements and expected behavior**
+
+This is crucial to ensure that code functions as intended and potential issues are identified.
+
+**2. Importance of human judgment**
+
+It's essential for humans to analyze the information provided by large language models and make informed decisions based on context and domain knowledge.
+
+## Align your tests with your requirements
+
+I don't want to leave you without a solution to this problem. You can still use AI to assist your tests, but explain what you want the test for the problem you'd like to solve, not to test what you've implemented!
+
+>*Can you write me a jest test spec that test test a typescript function that takes two numbers and divide them. Please cover edge cases.*
+
+```ts
+import { divideNumbers } from './yourDivideFunction'; // Import your divide function
+
+describe('divideNumbers function', () => {
+  it('should divide two positive numbers correctly', () => {
+    expect(divideNumbers(10, 2)).toBe(5);
+  });
+
+  it('should divide a positive number by zero and return Infinity', () => {
+    expect(divideNumbers(10, 0)).toBe(Infinity);
+  });
+
+  it('should divide a negative number by a positive number correctly', () => {
+    expect(divideNumbers(-10, 2)).toBe(-5);
+  });
+
+  it('should divide zero by a positive number and return 0', () => {
+    expect(divideNumbers(0, 10)).toBe(0);
+  });
+
+  it('should return NaN if divided by zero', () => {
+    expect(divideNumbers(0, 0)).toBe(NaN);
+  });
+
+  it('should divide a large number by a small number correctly', () => {
+    expect(divideNumbers(1000000, 0.000001)).toBe(1e+12);
+  });
+
+  it('should handle decimal precision properly', () => {
+    expect(divideNumbers(1, 3)).toBeCloseTo(0.333, 3); // Rounded to 3 decimal places
+  });
+
+  // Add more test cases as needed for your specific requirements
+});
+```
+
+With the right input, you can even get out BDD scenarios in Gherkin:
+
+```
+Feature: Division of Two Numbers
+  As a user
+  I want to divide two numbers
+  So that I can perform mathematical operations accurately
+
+  Scenario Outline: Divide two numbers
+    Given I have two numbers <numerator> and <denominator>
+    When I divide <numerator> by <denominator>
+    Then the result should be <result>
+
+    Examples:
+      | numerator | denominator | result |
+      | 6         | 3           | 2      |
+      | 10        | 2           | 5      |
+      | 0         | 5           | 0      |
+      | 8         | 4           | 2      |
+      | 15        | 5           | 3      |
+
+  Scenario: Divide by zero
+    Given I have a number
+    When I try to divide the number by zero
+    Then the operation should fail with an error message
+
+  Scenario Outline: Divide by a number close to zero
+    Given I have a number <numerator>
+    And I have a very small positive number <denominator>
+    When I divide <numerator> by <denominator>
+    Then the result should be positive infinity
+
+    Examples:
+      | numerator | denominator |
+      | 10        | 0.0001      |
+      | 100       | 0.00001     |
+
+```
+
+## Conclusion
+
+While AI-generated tests can be a great tool for initial test coverage or catching basic errors, relying solely on them can lead us down the wrong path if we're not careful.  The true power lies in combining AI's capabilities with human expertise.  By guiding AI with clear requirements and leveraging its strengths in areas like data analysis and automation, we can create a more efficient and effective testing process.
+
+:::note[Disclaimer]
+This blog post focuses on the limitations of AI-generated tests for a specific example involving a simple mathematical function. The potential benefits and limitations of AI testing in more complex scenarios are vast and warrant further exploration. Additionally, it's important to acknowledge the potential for biases inherent in the training data used for AI models, which can impact the results generated.
+:::
