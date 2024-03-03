@@ -15,8 +15,8 @@
             <pubDate>Sun, 03 Mar 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[Did you know that many software defects arise from unclear requirements?]]></description>
             <content:encoded><![CDATA[<blockquote>
-<p><strong>Did you know that many software defects arise from unclear requirements?
-** What we're seeing today is AI attempting to assist in test creation,</strong>
+<p><strong>Did you know that many software defects arise from unclear requirements?</strong>
+<strong>What we're seeing today is AI attempting to assist in test creation,</strong>
 <strong>promising to increase code coverage. However, this approach often</strong>
 <strong>emphasizes testing our implementations rather than testing against</strong>
 <strong>our requirement, which I believe has its value but also carries</strong>
@@ -52,7 +52,13 @@ or there's a naming issue, and it should be named <code>divideTwoNumbers()</code
 <p><strong>2. Importance of human judgment</strong></p>
 <p>It's essential for humans to analyze the information provided by large language models and make informed decisions based on context and domain knowledge.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="align-your-tests-with-your-requirements">Align your tests with your requirements<a href="https://www.pilot-period.org/de/ai-requirements-first#align-your-tests-with-your-requirements" class="hash-link" aria-label="Direkter Link zur Align your tests with your requirements" title="Direkter Link zur Align your tests with your requirements">​</a></h2>
-<p>I don't want to leave you without a solution to this problem. You can still use AI to assist your tests, but explain what you want the test for the problem you'd like to solve, not to test what you've implemented!</p>
+<p>While I don't want to leave you without a solution to this problem,
+it's worth noting that you should utilize AI to assist in testing.</p>
+<p>However, it's important to focus on explaining the purpose of the test
+and the problem you want to solve, rather than just testing the
+mplementation itself.</p>
+<p>While this principle is not new, it's crucial to remember,
+as it's something that can be overlooked when rushing into the use of AI.</p>
 <blockquote>
 <p><em>Can you write me a jest test spec that test test a typescript function that takes two numbers and divide them. Please cover edge cases.</em></p>
 </blockquote>
