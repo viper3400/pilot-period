@@ -4,11 +4,12 @@ title: Testing in the Age of AI - Requirements First
 authors: [jang]
 tags: [testing, automation, BDD, TDD]
 ---
-> **Did you know that a lot of software defects come from unclear requirements?**
-> **What we're witnessing today is AI attempting to aid in test creation with the**
-> **promise of increasing code coverage. However, this approach often**
-> **focuses on testing our implementations rather than testing against our**
-> **requirements, which I believe is risky.**
+> **Did you know that many software defects arise from unclear requirements?
+> ** What we're seeing today is AI attempting to assist in test creation,**
+> **promising to increase code coverage. However, this approach often**
+> **emphasizes testing our implementations rather than testing against**
+> **our requirement, which I believe has its value but also carries**
+> **certain risks that must be carefully considered.**
 
 ## Don't test your implementation
 
@@ -24,7 +25,7 @@ function addTwoNumbers(a: number, b: number): number {
 }
 ```
 
-Here's the response:
+Here's, what **ChatGPT 3.5** responded:
 
 > *Sure, here's a Jest test spec for the addTwoNumbers function:*
 
@@ -74,7 +75,7 @@ describe('addTwoNumbers', () => {
 
 The generated tests do not account for my implementation; they assume I want to add numbers as the function title suggests. The test will fail. However, this allows me to challenge my code.
 
-Here's, what **Gemini** answered:
+Here's, what **Gemini 1.0** answered:
 
 > *I'd be glad to provide a Jest test spec for the addTwoNumbers function, incorporating the valuable insights from the ratings and addressing the identified issues:*
 
