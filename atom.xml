@@ -18,7 +18,7 @@
 <strong>What we're seeing today is AI attempting to assist in test creation,</strong>
 <strong>promising to increase code coverage. However, this approach often</strong>
 <strong>emphasizes testing our implementations rather than testing against</strong>
-<strong>our requirement, which I believe has its value but also carries</strong>
+<strong>our requirements, which I believe has its value but also carries</strong>
 <strong>certain risks that must be carefully considered.</strong></p>
 </blockquote>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="dont-test-your-implementation">Don't test your implementation<a href="https://www.pilot-period.org/ai-requirements-first#dont-test-your-implementation" class="hash-link" aria-label="Direct link to Don't test your implementation" title="Direct link to Don't test your implementation">​</a></h2>
