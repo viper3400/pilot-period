@@ -13,3 +13,4 @@ jobs:
             with:
               token: ${{ secrets.DELETE_WORKFLOW }}
               save_period: 30
+              node-version: 20
