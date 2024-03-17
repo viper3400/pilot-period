@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9352],{6856:e=>{e.exports=JSON.parse('{"label":"serenity-js","permalink":"/de/tags/serenity-js","allTagsPath":"/de/tags","count":3,"unlisted":false}')}}]);
