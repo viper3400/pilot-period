@@ -1,0 +1,124 @@
+---
+slug: sjs-playwright-ct-cucumber
+title: Reuse Component Test Code with BDD Scenarios using Serenity/JS and Playwright
+authors: [jang]
+tags: [testing, automation, serenity-js, hands-on, BDD]
+---
+>***Next Chapter: Don't reinvent the wheel! Discover how to seamlessly integrate BDD scenarios into your existing Serenity/JS and Playwright setup, unlocking the power of code reuse across component testing and user acceptance tests. Say goodbye to redundant work and hello to efficient testing.***
+
+In the [last tutorial](/sjs-playwright-ct), I showed how to do component testing using Serenity/JS and Playwright. To be honest, it's a very simple component, making it difficult to create a real-world example. Let's just assume it's a coffee counter for controlling how many cups of coffee you drink.
+
+![Serenity/JS](/img/serenity-js-social-card.jpg)
+
+Component testing ensures that your self-contained components work as expected. For user acceptance, there may be some additional things necessary to verify functionality.
+
+The good news is: You can reuse what you've already prepared for the component tests and dive into the user scenarios.
+
+In this article, I will demonstrate how we can integrate BDD scenarios into the project I prepared the last time. I will use Serenity/JS BDD features. These BDD scenarios will run in the same project like the component tests and will reuse Serenity/JS `PageElements` and `Tasks` that we already used in the component tests.
+
+I cloned the last example and updated all packages to the latest versions to be up to date and created a [new repository](https://github.com/viper3400/next-sjs-ct-cucumber-tutorial). If you want to follow all the steps from scratch I suggest going back and starting with the [component testing tutorial](/sjs-playwright-ct) and coming back once you've finished.
+
+To start, you've to add some additional dev dependencies to your project:
+
+```sh
+npm install --save-dev @cucumber/cucumber 
+npm install --save-dev @serenity-js/cucumber
+```
+
+:::warning Mind the dependency versions!
+
+Serenity/JS is a monorepo and it's strictly recommended that all dependencies to the project have the same version. Here's the trap with my simple `npm install` approach, as this will always install the latest version, which might be incorrect.
+
+:::
+
+This time I will not list the file content in detail but refer to the repository and some explanations.
+
+Key to using BDD and Serenity/JS with cucumber is the [features folder](https://github.com/viper3400/next-sjs-ct-cucumber-tutorial/tree/main/features).
+
+```
+features
+|- coffee-counter
+|  |- coffee-counter.feature
+|  \- readme.md
+|
+|- step-definitions
+|  |- counter.steps.ts
+|  \- parameter.steps.ts
+|
+|- support
+|  |- Actors.ts
+|  \- serenity.config.ts
+```
+
+To enable Serenity/JS, we need the `support` folder with the `Actors.ts` and the `serenity.config.ts`.
+
+:::tip
+
+To learn more about folder structure, read about [requirements hierarchy](https://serenity-js.org/handbook/reporting/serenity-bdd-reporter/#serenity-bdd-best-practices) in the original Serenity/JS docs.
+To learn more about cucumber features, read [this](https://serenity-js.org/handbook/test-runners/cucumber/).
+
+:::
+
+To run cucumber, add a `cucumber.js` [configuration file](https://github.com/viper3400/next-sjs-ct-cucumber-tutorial/blob/main/cucumber.js) to your project root. Among other things, we configure to use Serenity/JS Cucumber adapter in here.
+
+Add two new scripts to the `package.json`
+
+```json title="package.json"
+"scripts": {
+    ...
+    "test:cucumber:execute": "cucumber-js",
+    "test:cucumber": "failsafe clean serenity-bdd:update test:cucumber:execute test:report"
+}
+```
+
+There is still one configuration thing left: The `create-next-app` from the last tutorial created a `tsconfig.json` for us. Some compile options are not compatible with cucumber.js, and we have to include the `features` folder.
+
+```json title="tsconfig.json"
+{
+  "compilerOptions":
+   {
+     "module": "commonjs",
+     "moduleResolution": "node",
+     "esModuleInterop": true,
+   },
+   {
+    "include": [
+      "features/**/*.ts",
+    ]
+   }
+}
+```
+
+To not interfere with the original Next.js configuration, I create a copy `tsconfig.next.ts`. I configured the Next.js itself to use this configuration in `next.config.mjs` instead of the `tsconfig.ts` file, just to make sure we still use the right config when building the Next.js app.
+
+```js title="next.config.mjs"
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    typescript: { tsconfigPath: 'tsconfig.next.json'}
+};
+
+export default nextConfig;
+```
+
+Until now, we just did some configuration tweaks. Now we're ready to take a look back into our [coffee counter scenario](https://github.com/viper3400/next-sjs-ct-cucumber-tutorial/blob/main/features/coffee-counter/coffee-counter.feature) again. Now have a look into the [counter steps definitions](https://github.com/viper3400/next-sjs-ct-cucumber-tutorial/blob/main/features/step-definitions/counter.steps.ts). Here is where the magic happens. We just reuse the same tasks we [already provided for component testing](https://github.com/viper3400/next-sjs-ct-cucumber-tutorial/blob/main/src/components/CounterSerenity.ts):
+
+```ts title="counter.step.ts"
+import { Given, Then, When } from '@cucumber/cucumber';
+import { Actor } from '@serenity-js/core';
+
+import { CounterSerenity } from '../../src/components/CounterSerenity';
+
+Then('{pronoun} should see that the "Increase" button is enabled', async (actor: Actor) =>
+    actor.attemptsTo(
+        CounterSerenity.EnsureIncreaseButtonIsEnabled()
+    ))
+```
+
+You're nearly ready to run the test the first time. Make sure that you start your server with `npm run dev` on port 3000.
+
+Then run `npm run test:cucumber` and find the BDD report in the `target/site` folder.
+
+
+
+
+
