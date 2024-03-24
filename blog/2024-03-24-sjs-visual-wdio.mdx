@@ -1,0 +1,153 @@
+---
+slug: sjs-visual-wdio
+title: Level Up Your Serenity/JS Tests with WDIO Visual Regression Testing
+authors: [jang]
+tags: [testing, automation, serenity-js, hands-on, WDIO, visual-regression]
+---
+> **Don't let visual bugs slip through! Learn how to quickly add WDIO visual regression testing to your Serenity/JS project.**
+
+I recently watched a video tutorial by Wim Selles [here](https://www.youtube.com/watch?v=wQRGpWX3fsk) explaining the new WebdriverIO snapshot and visual snapshot features introduced in version 8.29.0.
+
+Playwright also offers some support for snapshot and visual snapshot testing [here](https://playwright.dev/docs/test-snapshots).
+
+I won't go into detail of visual regression testing since there are many resources available online.
+
+:::info Visual Regression Testing
+
+* [Visual Regression Testing](https://medium.com/loftbr/visual-regression-testing-eb74050f3366)
+* [Visual Regression Testing - LambdaTest](https://www.lambdatest.com/learning-hub/visual-regression-testing)
+* [Visual Regression Testing with Jest and Percy.io](https://themeisle.com/blog/visual-regression-testing/)
+* [Visual Regression Testing Guide](https://testgrid.io/blog/visual-regression-testing-guide/)
+
+:::
+
+While snapshot testing isn't currently part of Serenity/JS, this guide shows how to quickly integrate the feature into your Serenity/JS test specs using custom interactions.
+
+For more on custom interactions, refer to the Serenity/JS documentation [here](https://serenity-js.org/api/core/class/Interaction/).
+
+![Serenity/JS](/img/serenity-js-social-card.jpg)
+
+## Setting Up the Project
+
+1. Clone the `serenity-js-mocha-webdriverio-template` [repository](https://github.com/serenity-js/serenity-js-mocha-webdriverio-template):
+
+```bash
+git clone git@github.com:serenity-js/serenity-js-mocha-webdriverio-template.git
+```
+
+2. Navigate to the cloned directory and run:
+```bash
+npm install
+npm test
+```
+
+This ensures your project is set up correctly.
+
+3. Install the visual testing support for WebdriverIO:
+```bash
+npm install @wdio/visual-service --save-dev
+```
+
+If you encounter errors, check the system requirements for 
+visual testing with WDIO [here](https://webdriver.io/docs/visual-testing#system-requirements).
+
+4. Enable the visual service in your project's root directory file `wdio.conf.ts`:
+
+```ts title="./wdio.conf.ts"
+// Test runner services
+// Services take over a specific job you don't want to take care of. They enhance
+// your test setup with almost no effort. Unlike plugins, they don't add new
+// commands. Instead, they hook themselves up into the test process.
+services: [ 'visual' ],
+```
+
+5. Update your project's root directory file `tsconfig.json` to include the necessary WDIO types:
+
+```json title="./tsconfig.json"
+{
+    "compilerOptions": {
+        "types": [
+          ...
+          "expect-webdriverio",
+          "@wdio/visual-service"
+        ],
+    }
+}
+```
+
+## Creating Custom Interactions
+
+Now, let's create our custom Serenity/JS interactions:
+
+```typescript title="./test/serenity/CustomInteractions.ts"
+import { Interaction, MetaQuestionAdapter } from '@serenity-js/core';
+import { PageElement } from '@serenity-js/web';
+
+export const CompareScreen = (snapshotIdentifier: string) =>     
+    Interaction.where('#actor compares whole page screenshot', 
+        async actor => {
+            return expect(browser).toMatchFullPageSnapshot(snapshotIdentifier)
+        })
+
+export const CompareElement = (
+    pageElement: MetaQuestionAdapter<PageElement<unknown>, PageElement<unknown>>,
+    snapshotIdentifier: string) =>     
+    Interaction.where('#actor compares element screenshot', 
+        async actor => {
+            const selector = await pageElement.answeredBy(actor)
+            return expect(selector.nativeElement())
+                .toMatchElementSnapshot(snapshotIdentifier)
+        }
+    )
+```
+
+:::info
+These custom interactions are designed specifically for Serenity/JS and **WDIO**.
+
+If you're using **Playwright**, you'll need to implement interactions according to Playwright's approach to snapshots [here](https://playwright.dev/docs/test-snapshots).
+
+A more comprehensive solution that integrates seamlessly with Serenity/JS and supports all browser automation tools would require additional development beyond this basic example.
+:::
+
+
+## Using the Interactions in Specs
+
+Here's how to use the interactions in your spec files:
+
+```ts title="./specs/ui/todo/serenity-js_website.spec.ts"
+ it(`offers examples to help you practice test automation`, async () => {
+        ...
+        // Once we know the system is up and running, Wendy can proceed with the web-based scenario.
+        await actorCalled('Wendy').attemptsTo(
+            TodoList.createListContaining([
+                `Buy dog food`,
+                `Feed the dog`,
+                `Book a vet's appointment`,
+            ]),
+            CompareScreen('list_after_creation'),
+            TodoList.markAsCompleted([
+                `Buy dog food`,
+                `Feed the dog`,
+            ]),
+            CompareScreen('list_after_completion'),
+            Ensure.that(
+                TodoList.outstandingItemsCount(),
+                equals(1)
+            ),
+        )
+    })
+```
+
+
+:::info Important Considerations
+* Visual testing is not a silver bullet. Refer to the WebdriverIO page for key considerations for optimal use [here](https://webdriver.io/docs/visual-testing/considerations).
+* Choose meaningful names for your reference snapshots. Ensure unique images for unique tests, especially when reusing Serenity/JS tasks containing the 'CompareScreen' and 'CompareElement' interactions.
+:::
+
+## Conclusion
+n this guide, we've explored how to integrate visual regression testing into your Serenity/JS project 
+using custom interactions. This approach allows you to leverage Serenity/JS's powerful testing
+capabilities while ensuring the visual consistency of your web application. Remember,
+visual testing is a valuable tool, but it's important to use it strategically and with
+clear expectations. By following the best practices, you can effectively incorporate visual
+regression testing into your Serenity/JS test suite.
