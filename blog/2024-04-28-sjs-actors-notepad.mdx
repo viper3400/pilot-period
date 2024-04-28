@@ -1,0 +1,163 @@
+---
+slug: sjs-actors-notepad
+title: Serenity/JS and Actor Notepads for Injecting User Credentials
+authors: [jang]
+tags: [testing, automation, serenity-js, hands-on, playwright]
+---
+> **Are your test scripts drowning in test data chaos? Say goodbye to clutter and hello to clarity with Serenity/JS's Actor Notepads! Learn how to inject user credentials seamlessly for cleaner, more maintainable tests. Ready to dive in?**
+
+## Actors in Serenity/JS
+
+[Serenity/JS](https://serenity-js.org/) is a testing framework that promotes collaboration, clarity, and maintainability in automated testing. At its core, Serenity/JS introduces the concept of actors, which represent the different users or personas interacting with a web application. Actors are equipped with capabilities and context, allowing them to perform actions and interact with the application under test.
+
+![Serenity/JS](/img/serenity-js-social-card.jpg)
+
+## Introducing Actor Notepads
+A key feature of Serenity/JS is the concept of actor notepads. Notepads serve as containers for actor-specific data, such as credentials, expected outcomes, and any other contextual information relevant to the test scenario. Instead of cluttering test scripts with data setup details, actor notepads encapsulate this information within the actor itself.
+
+
+## Example
+
+Let's assume a small test where an actor:
+- Navigates to the login page of the application (https://the-internet.herokuapp.com/login).
+- Enters the username retrieved from the actor's notepad into the username input field on the login page.
+- Enters the password retrieved from the actor's notepad into the password input field on the login page.
+- Clicks on the login button to submit the credentials.
+- Waits until a flash message appears on the page, indicating a successful login, with the expected result retrieved from the actor's notepad.
+
+First, we prepare two actors called Tom Smith, who is allowed to login and Jan Doe, who is not allowed to login.
+We put their login credentials and expected result into their notepads, using the ability to [TakeNotes](https://serenity-js.org/api/core/class/TakeNotes/).
+
+```typescript
+// To avoid typos and repetition when instantiating and retrieving actors, 
+// we use string enums to store actor names:
+enum ActorNames {
+    Tom = 'Tom Smith, who is allowed to use our system,',
+    Jane = 'Jane Doe, who is not allowed to use our system,'
+}
+
+// We are using a model for our actors notepad
+type FormAuthenticationModel = {
+    Username: string,
+    Password: string,
+    ExpectedResult: string
+}
+
+class AuthenticationActors implements Cast {
+    constructor(private readonly browser: Browser) {
+    }
+
+    // Prepare method to configure actors with specific capabilities and data
+    prepare(actor: Actor): Actor {
+        // Initialize the actor with the capability to browse the web using Playwright
+        let preparedActor = actor.whoCan(BrowseTheWebWithPlaywright.using(this.browser));
+
+        // Switch statement to customize actor based on their name
+        switch (actor.name) {
+            // Configuration for actor named Tom
+            case ActorNames.Tom: {
+                // Configure actor to take notes using a notepad with specific authentication data
+                preparedActor = preparedActor.whoCan(
+                    TakeNotes.using(Notepad.with<FormAuthenticationModel>({
+                        Username: 'tomsmith',
+                        Password: 'SuperSecretPassword!',
+                        ExpectedResult: 'You logged into a secure area!'
+                    }))
+                );
+                break;
+            }
+            // Configuration for actor named Jane
+            case ActorNames.Jane: {
+                // Configure actor to take notes using a notepad with specific authentication data
+                preparedActor = preparedActor.whoCan(
+                    TakeNotes.using(Notepad.with<FormAuthenticationModel>({
+                        Username: 'janedoe',
+                        Password: 'WrongPassword!',
+                        ExpectedResult: 'Your username is invalid!'
+                    }))
+                );
+                break;
+            }
+        }
+        // Return the prepared actor with customized capabilities and data
+        return preparedActor;
+    }
+}
+```
+
+For our test we have to prepare the `PageElements` and a `Task`:
+
+```typescript
+class FormAuthenticationPage {
+    static UserNameInputField = PageElement.located(By.css('#username')).describedAs('field to input the username')
+    static PasswordInputField = PageElement.located(By.css('#password')).describedAs('field to input the password')
+    static LoginButton = PageElement.located(By.css('[type="submit"]')).describedAs('button to login')
+    static FlashMessage = PageElement.located(By.css('#flash')).describedAs('result message')
+}
+
+const LoginToAppUsingActorsNotepad = () => 
+    Task.where(`#actor logs in using username and password from their notepad`,
+        Navigate.to('https://the-internet.herokuapp.com/login'),
+        Enter.theValue(notes<FormAuthenticationModel>().get('Username')).into(FormAuthenticationPage.UserNameInputField),
+        Enter.theValue(notes<FormAuthenticationModel>().get('Password')).into(FormAuthenticationPage.PasswordInputField),
+        Click.on(FormAuthenticationPage.LoginButton),
+        Wait.until(Text.of(FormAuthenticationPage.FlashMessage), includes(notes<FormAuthenticationModel>().get('ExpectedResult')))
+    )
+```
+
+Finally, when using Serenity/JS with Playwright Test our spec looks like:
+
+```typescript
+//make sure to import { describe, it, test } from '@serenity-js/playwright-test'
+
+describe('form authentication notepad', () => {
+    test.use({
+        
+        /*
+         * Override the default cast of actors, 
+         * so that each actor receives their own,
+         * independent browser window.
+         */
+        actors: async ({ browser }, use) => {
+            use(new AuthenticationActors(browser));
+        },
+    });
+    describe('login page', () => {
+        it('should log in with correct username and password', async ({ actorCalled }) => {
+            await actorCalled(ActorNames.Tom).attemptsTo(
+                LoginToAppUsingActorsNotepad(),
+            )
+        })
+
+        it('should deny login with incorrect username and password', async ({ actorCalled }) => {
+            await actorCalled(ActorNames.Jane).attemptsTo(
+                LoginToAppUsingActorsNotepad(),
+            )
+        })
+
+    })
+})
+```
+To start right away with Serenity/JS using Playwright test I recommend to use a [Serenity/JS template](https://serenity-js.org/handbook/getting-started/project-templates/#playwright).
+
+## Advantages of Using Actor Notepads
+
+- **Separation of Concerns:** By delegating data setup to actor notepads, test scripts focus solely on orchestrating actor actions, leading to cleaner and more readable code.
+
+- **Encapsulation:** Actor notepads encapsulate actor-specific data, promoting better organization and reducing the likelihood of data misuse or modification.
+
+- **Reusability:** Actor notepads facilitate the reuse of actors across multiple tests without duplicating data setup logic, improving test maintainability and reducing code duplication.
+
+- **Scalability:** As test suites grow, managing data setup through actor notepads proves more scalable and manageable than injecting data through parameters.
+
+- **Enhanced Reporting:** Serenity/JS emphasizes descriptive and readable test reports. Actor notepads enable better reporting by associating test steps with relevant actor context, enhancing test comprehensibility.
+
+- **Flexibility for Extension:** Actor notepads provide a flexible mechanism to extend actor capabilities or introduce additional data for testing purposes, without significantly modifying test script structure.
+
+## Conclusion
+
+In conclusion, leveraging actor notepads within Serenity/JS tranforms automated testing,
+offering a streamlined approach to managing test data. By encapsulating test data within actors, 
+test scripts become clearer, more maintainable, and less prone to errors.
+With the separation of concerns afforded by actor notepads, the focus shifts from data setup
+to orchestrating meaningful test actions, resulting in enhanced readability and scalability.    
