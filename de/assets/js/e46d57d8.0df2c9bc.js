@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[653],{5159:e=>{e.exports=JSON.parse('{"label":"QualityAssurance","permalink":"/de/tags/quality-assurance","allTagsPath":"/de/tags","count":1,"unlisted":false}')}}]);

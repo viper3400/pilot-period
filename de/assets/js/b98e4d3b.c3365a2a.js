@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[1171],{5680:e=>{e.exports=JSON.parse('{"label":"visual-regression","permalink":"/de/tags/visual-regression","allTagsPath":"/de/tags","count":1,"unlisted":false}')}}]);
