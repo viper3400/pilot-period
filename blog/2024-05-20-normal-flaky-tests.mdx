@@ -7,10 +7,7 @@ draft: true
 ---
 > **Imagine a tightrope walker blaming their safety net for a fall—retrying, hoping the net won't
 catch them the second time, or worse, removing it altogether. Sounds absurd, right?
-Yet, in software testing, we often treat flaky tests with the same flawed logic.
-Instead of just retrying or disabling, let's dive deep into understanding and fixing the root causes
-of test flakiness. Discover how mastering your application, test environment, 
-and automation framework can transform your testing approach.**
+Yet, in software testing, we often treat "flaky tests" with the same flawed logic.**
 
 Something I read recently in a chat when one of a so called e2e tests failed:
 
@@ -42,55 +39,33 @@ So today I just like to remind you about some skills to learn to avoid "normal f
 
 ## Learn more about your application under test
 
-**Understand application behavior and interactions**
-    
-- Deep dive into how your application behaves, especially in edge cases.
+**Understand application behavior and interactions:** Deep dive into how your application behaves, especially in edge cases.
 
-**Handle asynchronous operations**
-
-- Ensure you understand and properly handle asynchronous operations within the application.
+**Handle asynchronous operations:** Ensure you understand and properly handle asynchronous operations within the application.
 
 ## Learn more about your test environment
 
-**Manage test data consistently**
-
-- Ensure your tests have reliable and consistent data to work with, avoiding fluctuations that cause flakiness.
+**Manage test data consistently:** Ensure your tests have reliable and consistent data to work with, avoiding fluctuations that cause flakiness.
     
-**Maintain environmental consistency**
-
-- Ensure that your test environments are consistent and reflect the production environment as closely as possible.
+**Maintain environmental consistency:** Ensure that your test environments are consistent and reflect the production environment as closely as possible.
     
-**Ensure network stability and handling**
+**Ensure network stability and handling:** Understand how to manage and mitigate network instability that could affect your tests.
 
-- Understand how to manage and mitigate network instability that could affect your tests.
-
-**Implement robust error handling**
-
-- Develop robust error handling to manage unexpected issues gracefully.
+**Implement robust error handling:** Develop robust error handling to manage unexpected issues gracefully.
 
 ## Learn more about your test automation framework
 
-**Understand parallel execution**
+**Understand parallel execution:** Learn how your test framework handles parallel execution and manage shared resources to avoid conflicts.
 
-- Learn how your test framework handles parallel execution and manage shared resources to avoid conflicts.
-
-**Manage timeouts and synchronization**
-
-- Configure proper timeouts and synchronization mechanisms to handle asynchronous operations effectively.
+**Manage timeouts and synchronization:** Configure proper timeouts and synchronization mechanisms to handle asynchronous operations effectively.
 
 ## Learn more about your tests
 
-**Isolate tests**
+**Isolate tests:** Ensure that tests are isolated and independent, avoiding interdependencies that could cause cascading failures.
 
-- Ensure that tests are isolated and independent, avoiding interdependencies that could cause cascading failures.
-
-**Test data management**
-
-- Develop strategies for consistent and reliable test data management to avoid flaky results.
+**Test data management:** Develop strategies for consistent and reliable test data management to avoid flaky results.
     
-**Error handling in tests**
-
-- Implement robust error handling within your tests to manage unexpected issues gracefully.
+**Error handling in tests:** Implement robust error handling within your tests to manage unexpected issues gracefully.
 
 ## Learn how to fix it
 
