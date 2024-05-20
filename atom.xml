@@ -18,6 +18,7 @@
 catch them the second time, or worse, removing it altogether. Sounds absurd, right?
 Yet, in software testing, we often treat "flaky tests" with the same flawed logic.</strong></p>
 </blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-safety-net">The Safety Net<a href="https://www.pilot-period.org/normal-flaky-tests#the-safety-net" class="hash-link" aria-label="Direct link to The Safety Net" title="Direct link to The Safety Net">​</a></h2>
 <p>Something I read recently in a chat when one of the so called e2e tests failed:</p>
 <blockquote>
 <p>Was it just a "normal flaky test"?</p>
