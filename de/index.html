@@ -9,7 +9,7 @@
 
 
 <script>!function(e,t,a,i){e[a]=e[a]||[],e[a].push({start:(new Date).getTime(),event:"stg.start"});var c=t.getElementsByTagName("script")[0],n=t.createElement("script");var r=(e.location.href.match("stg_debug")||t.cookie.match("stg_debug"))&&!e.location.href.match("stg_disable_debug");!function(e,a,i){var c="";if(i){var n=new Date;n.setTime(n.getTime()+24*i*60*60*1e3),c="; expires="+n.toUTCString(),f="; SameSite=Strict"}t.cookie=e+"="+a+c+f+"; path=/"}("stg_debug",r?1:"",r?14:-1);var s=[];r&&s.push("stg_debug");var o=s.length>0?"?"+s.join("&"):"";n.async=!0,n.src="https://pilot-period.containers.piwik.pro/16f7a2cc-833a-4baf-8adc-40a9cc9ff38e.js"+o,c.parentNode.insertBefore(n,c),function(t,i,c){t[i]=t[i]||{};for(var n=0;n<c.length;n++)!function(c){t[i][c]=t[i][c]||{},t[i][c].api=t[i][c].api||function(){var t=[].slice.call(arguments,0);"string"==typeof t[0]&&e[a].push({event:i+"."+c+":"+t[0],parameters:[].slice.call(arguments,1)})}}(c[n])}(e,"ppms",["tm","cm"])}(window,document,"dataLayer")</script><link rel="stylesheet" href="/de/assets/css/styles.40e1b2b8.css">
-<script src="/de/assets/js/runtime~main.2899ae65.js" defer="defer"></script>
+<script src="/de/assets/js/runtime~main.5cbc49b4.js" defer="defer"></script>
 <script src="/de/assets/js/main.5ed3db05.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -18,7 +18,7 @@
 catch them the second time, or worse, removing it altogether. Sounds absurd, right?
 Yet, in software testing, we often treat &quot;flaky tests&quot; with the same flawed logic.</strong></p>
 </blockquote>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-safety-net">The Safety Net<a href="#the-safety-net" class="hash-link" aria-label="Direkter Link zur The Safety Net" title="Direkter Link zur The Safety Net">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="tightrope walker" src="/de/assets/images/tightrope-walker-8f2e808982d52da4c8fb47d40cc6d183.jpg" width="1024" height="1024" class="img_ev3q"></p>
 <p>Something I read recently in a chat when one of the so called e2e tests failed:</p>
 <blockquote>
 <p>Was it just a &quot;normal flaky test&quot;?</p>
@@ -27,7 +27,6 @@ Yet, in software testing, we often treat &quot;flaky tests&quot; with the same f
 hope that it pass, then go on - and probably cheer automation tools that support retrying
 failed tests for x times before declaring them as failed.</p>
 <p>The <em>&quot;normal&quot; second step</em> is to disable this tests to get the build green.</p>
-<p><img decoding="async" loading="lazy" alt="tightrope walker" src="/de/assets/images/tightrope-walker-8f2e808982d52da4c8fb47d40cc6d183.jpg" width="1024" height="1024" class="img_ev3q"></p>
 <p>When software people refer to tests as their &quot;saftey net&quot;, then I start to wonder the situation,
 if they were tightrope walkers. Imagine a situation that you made mistakenly a step a side and fall
 down into the saftey net - would you act like in the situation I described above?</p>
