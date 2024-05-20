@@ -2,11 +2,72 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.pilot-period.org/de/</id>
     <title>Pilot Period Blog</title>
-    <updated>2024-04-28T00:00:00.000Z</updated>
+    <updated>2024-05-20T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.pilot-period.org/de/"/>
     <subtitle>Pilot Period Blog</subtitle>
     <icon>https://www.pilot-period.org/de/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Normal Flaky Tests]]></title>
+        <id>https://www.pilot-period.org/de/normal-flaky-tests</id>
+        <link href="https://www.pilot-period.org/de/normal-flaky-tests"/>
+        <updated>2024-05-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Imagine a tightrope walker blaming their safety net for a fall—retrying, hoping the net won't]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p><strong>Imagine a tightrope walker blaming their safety net for a fall—retrying, hoping the net won't
+catch them the second time, or worse, removing it altogether. Sounds absurd, right?
+Yet, in software testing, we often treat "flaky tests" with the same flawed logic.</strong></p>
+</blockquote>
+<p>Something I read recently in a chat when one of the so called e2e tests failed:</p>
+<blockquote>
+<p>Was is just a "normal flaky test"?</p>
+</blockquote>
+<p>The <em>"normal" first step</em> is to retry the failed test,
+hope that is pass, then go on - and probably cheer automation tools that support retrying
+failed tests for x times before declaring them as failed.</p>
+<p>The <em>"normal" second step</em> is to disable this tests to get the build green.</p>
+<p><img decoding="async" loading="lazy" alt="tightrope walker" src="https://www.pilot-period.org/de/assets/images/tightrope-walker-8f2e808982d52da4c8fb47d40cc6d183.jpeg" width="1024" height="1024" class="img_ev3q"></p>
+<p>When software people refer to tests as their "saftey net", then I start to wonder the situation,
+if they were tightrope walkers. Imagine a situation that you made mistakenly a step a side and fall
+down into the saftey net - would you act like in the situation I described above?</p>
+<p>Retry again - hope that the net won't catch you the 2nd or 3rd time? Remove the net, because it was
+obvoiusly the net's fault you made the wrong step.</p>
+<p>Okay, don't let us be to metaphorical and I don't want to elaborate about the reasons
+behind flaky tests. There was enough stuff written about that
+(a lot of good and a lot of bad stuff).</p>
+<p>One good collection of reasons that is a bit aged but I can still relate to:
+<a href="https://testing.googleblog.com/2020/12/test-flakiness-one-of-main-challenges.html" target="_blank" rel="noopener noreferrer">https://testing.googleblog.com/2020/12/test-flakiness-one-of-main-challenges.html</a></p>
+<p>So today I just like to remind you about some skills to learn to avoid "normal flaky tests":</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="learn-more-about-your-application-under-test">Learn more about your application under test<a href="https://www.pilot-period.org/de/normal-flaky-tests#learn-more-about-your-application-under-test" class="hash-link" aria-label="Direkter Link zur Learn more about your application under test" title="Direkter Link zur Learn more about your application under test">​</a></h2>
+<p><strong>Understand application behavior and interactions:</strong> Deep dive into how your application behaves, especially in edge cases.</p>
+<p><strong>Handle asynchronous operations:</strong> Ensure you understand and properly handle asynchronous operations within the application.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="learn-more-about-your-test-environment">Learn more about your test environment<a href="https://www.pilot-period.org/de/normal-flaky-tests#learn-more-about-your-test-environment" class="hash-link" aria-label="Direkter Link zur Learn more about your test environment" title="Direkter Link zur Learn more about your test environment">​</a></h2>
+<p><strong>Manage test data consistently:</strong> Ensure your tests have reliable and consistent data to work with, avoiding fluctuations that cause flakiness.</p>
+<p><strong>Maintain environmental consistency:</strong> Ensure that your test environments are consistent and reflect the production environment as closely as possible.</p>
+<p><strong>Ensure network stability and handling:</strong> Understand how to manage and mitigate network instability that could affect your tests.</p>
+<p><strong>Implement robust error handling:</strong> Develop robust error handling to manage unexpected issues gracefully.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="learn-more-about-your-test-automation-framework">Learn more about your test automation framework<a href="https://www.pilot-period.org/de/normal-flaky-tests#learn-more-about-your-test-automation-framework" class="hash-link" aria-label="Direkter Link zur Learn more about your test automation framework" title="Direkter Link zur Learn more about your test automation framework">​</a></h2>
+<p><strong>Understand parallel execution:</strong> Learn how your test framework handles parallel execution and manage shared resources to avoid conflicts.</p>
+<p><strong>Manage timeouts and synchronization:</strong> Configure proper timeouts and synchronization mechanisms to handle asynchronous operations effectively.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="learn-more-about-your-tests">Learn more about your tests<a href="https://www.pilot-period.org/de/normal-flaky-tests#learn-more-about-your-tests" class="hash-link" aria-label="Direkter Link zur Learn more about your tests" title="Direkter Link zur Learn more about your tests">​</a></h2>
+<p><strong>Isolate tests:</strong> Ensure that tests are isolated and independent, avoiding interdependencies that could cause cascading failures.</p>
+<p><strong>Test data management:</strong> Develop strategies for consistent and reliable test data management to avoid flaky results.</p>
+<p><strong>Error handling in tests:</strong> Implement robust error handling within your tests to manage unexpected issues gracefully.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="learn-how-to-fix-it">Learn how to fix it<a href="https://www.pilot-period.org/de/normal-flaky-tests#learn-how-to-fix-it" class="hash-link" aria-label="Direkter Link zur Learn how to fix it" title="Direkter Link zur Learn how to fix it">​</a></h2>
+<p>Finally, learn how to identify the root of your issues within the knowledge fields above,
+learn how to fix them - and then - just fix them!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="conclusion">Conclusion<a href="https://www.pilot-period.org/de/normal-flaky-tests#conclusion" class="hash-link" aria-label="Direkter Link zur Conclusion" title="Direkter Link zur Conclusion">​</a></h2>
+<p>Implementing these strategies to avoid "normal flaky tests" requires effort and isn't free of challenges.
+However, the investment in learning about your application, test environment, test automation framework,
+and tests themselves pays off significantly. By addressing the root causes of flakiness, you can improve
+the reliability and robustness of your tests, ultimately enhancing the overall quality of your software.</p>]]></content>
+        <author>
+            <name>Jan Graefe</name>
+            <uri>https://jangraefe.de</uri>
+        </author>
+        <category label="testing" term="testing"/>
+        <category label="automation" term="automation"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Serenity/JS and Actor Notepads for Injecting User Credentials]]></title>
         <id>https://www.pilot-period.org/de/sjs-actors-notepad</id>
