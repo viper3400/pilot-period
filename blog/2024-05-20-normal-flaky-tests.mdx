@@ -1,0 +1,80 @@
+---
+slug: normal-flaky-tests
+title: Normal Flaky Tests
+authors: [jang]
+tags: [testing, automation]
+draft: true
+---
+> **Imagine a tightrope walker blaming their safety net for a fall—retrying, hoping the net won't
+catch them the second time, or worse, removing it altogether. Sounds absurd, right?
+Yet, in software testing, we often treat "flaky tests" with the same flawed logic.**
+
+Something I read recently in a chat when one of a so called e2e tests failed:
+
+> Was is just a "normal flaky test"?
+
+The *"normal" first step* is to retry the failed test,
+hope that is pass, then go on - and probably cheer automation tools that support retrying
+failed tests for x times before declaring them as failed.
+
+The *"normal" second step* is to disable this tests to get the build green.
+
+![tightrope walker](/img/tightrope-walker.jpeg)
+
+When software people refer to tests as their "saftey net", then I start to wonder the situation,
+if they were tightrope walkers. Imagine a situation that you made mistakenly a step a side and fall
+down into the saftey net - would you act like in the situation I described above?
+
+Retry again - hope that the net won't catch you the 2nd or 3rd time? Remove the net, because it was
+obvoiusly the net's fault you made the wrong step.
+
+Okay, don't let us be to metaphorical and I don't want to elaborate about the reasons
+behind flaky tests. There was enough stuff written about that
+(a lot of good and a lot of bad stuff).
+
+One good collection of reasons that is a bit aged but I can still relate to: 
+https://testing.googleblog.com/2020/12/test-flakiness-one-of-main-challenges.html
+
+So today I just like to remind you about some skills to learn to avoid "normal flaky tests":
+
+## Learn more about your application under test
+
+**Understand application behavior and interactions:** Deep dive into how your application behaves, especially in edge cases.
+
+**Handle asynchronous operations:** Ensure you understand and properly handle asynchronous operations within the application.
+
+## Learn more about your test environment
+
+**Manage test data consistently:** Ensure your tests have reliable and consistent data to work with, avoiding fluctuations that cause flakiness.
+    
+**Maintain environmental consistency:** Ensure that your test environments are consistent and reflect the production environment as closely as possible.
+    
+**Ensure network stability and handling:** Understand how to manage and mitigate network instability that could affect your tests.
+
+**Implement robust error handling:** Develop robust error handling to manage unexpected issues gracefully.
+
+## Learn more about your test automation framework
+
+**Understand parallel execution:** Learn how your test framework handles parallel execution and manage shared resources to avoid conflicts.
+
+**Manage timeouts and synchronization:** Configure proper timeouts and synchronization mechanisms to handle asynchronous operations effectively.
+
+## Learn more about your tests
+
+**Isolate tests:** Ensure that tests are isolated and independent, avoiding interdependencies that could cause cascading failures.
+
+**Test data management:** Develop strategies for consistent and reliable test data management to avoid flaky results.
+    
+**Error handling in tests:** Implement robust error handling within your tests to manage unexpected issues gracefully.
+
+## Learn how to fix it
+
+Finally, learn how to identify the root of your issues within the knowledge fields above,
+learn how to fix them - and then - just fix them!
+
+## Conclusion
+
+Implementing these strategies to avoid "normal flaky tests" requires effort and isn't free of challenges.
+However, the investment in learning about your application, test environment, test automation framework,
+and tests themselves pays off significantly. By addressing the root causes of flakiness, you can improve
+the reliability and robustness of your tests, ultimately enhancing the overall quality of your software.
