@@ -12,21 +12,21 @@
         <id>https://www.pilot-period.org/de/normal-flaky-tests</id>
         <link href="https://www.pilot-period.org/de/normal-flaky-tests"/>
         <updated>2024-05-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Imagine a tightrope walker blaming their safety net for a fall—retrying, hoping the net won't]]></summary>
+        <summary type="html"><![CDATA[Imagine a tightrope walker blaming their safety net for a fall — retrying, hoping the net won't]]></summary>
         <content type="html"><![CDATA[<blockquote>
-<p><strong>Imagine a tightrope walker blaming their safety net for a fall—retrying, hoping the net won't
+<p><strong>Imagine a tightrope walker blaming their safety net for a fall — retrying, hoping the net won't
 catch them the second time, or worse, removing it altogether. Sounds absurd, right?
 Yet, in software testing, we often treat "flaky tests" with the same flawed logic.</strong></p>
 </blockquote>
 <p>Something I read recently in a chat when one of the so called e2e tests failed:</p>
 <blockquote>
-<p>Was is just a "normal flaky test"?</p>
+<p>Was it just a "normal flaky test"?</p>
 </blockquote>
 <p>The <em>"normal" first step</em> is to retry the failed test,
-hope that is pass, then go on - and probably cheer automation tools that support retrying
+hope that it pass, then go on - and probably cheer automation tools that support retrying
 failed tests for x times before declaring them as failed.</p>
 <p>The <em>"normal" second step</em> is to disable this tests to get the build green.</p>
-<p><img decoding="async" loading="lazy" alt="tightrope walker" src="https://www.pilot-period.org/de/assets/images/tightrope-walker-8f2e808982d52da4c8fb47d40cc6d183.jpeg" width="1024" height="1024" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="tightrope walker" src="https://www.pilot-period.org/de/assets/images/tightrope-walker-8f2e808982d52da4c8fb47d40cc6d183.jpg" width="1024" height="1024" class="img_ev3q"></p>
 <p>When software people refer to tests as their "saftey net", then I start to wonder the situation,
 if they were tightrope walkers. Imagine a situation that you made mistakenly a step a side and fall
 down into the saftey net - would you act like in the situation I described above?</p>
