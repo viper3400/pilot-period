@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[9097],{1504:e=>{e.exports=JSON.parse('{"tag":{"label":"WDIO","permalink":"/tags/wdio","allTagsPath":"/tags","count":1,"unlisted":false},"listMetadata":{"permalink":"/tags/wdio","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
