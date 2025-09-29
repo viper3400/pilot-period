@@ -8,9 +8,6 @@ jobs:
         runs-on: ubuntu-latest
         if: ${{ always() }}
         steps:
-          - uses: actions/setup-node@v5
-            with:
-              node-version: 22
           - name: Delete workflow runs
             uses: dmvict/clean-workflow-runs@v1.2.2
             with:
