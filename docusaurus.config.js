@@ -171,6 +171,12 @@ const config = {
           id: '16f7a2cc-833a-4baf-8adc-40a9cc9ff38e',
           enable: true,
       }
+    ],
+      [
+      require.resolve('./src/plugins/posthog/index.js'),
+      {
+          enable: true,
+      }
     ]  
   ]
 };
