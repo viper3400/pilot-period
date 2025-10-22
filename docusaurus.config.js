@@ -26,6 +26,17 @@ const config = {
     locales: ['en', 'de'],
   },
 
+  customFields: {
+    posthog: {
+      apiKey: 'phc_IoAcPQMF0QsMEpVH2IRR34YABZYTQq61pWFbU8Q5hPF',
+      apiHost: 'https://eu.i.posthog.com',
+      options: {
+        defaults: '2025-05-24',
+        person_profiles: 'identified_only',
+      },
+    },
+  },
+
   presets: [
     [
       'classic',
@@ -169,15 +180,9 @@ const config = {
       require.resolve('./src/plugins/piwik/index.js'),
       {
           id: '16f7a2cc-833a-4baf-8adc-40a9cc9ff38e',
-          enable: true,
+          enable: false,
       }
-    ],
-      [
-      require.resolve('./src/plugins/posthog/index.js'),
-      {
-          enable: true,
-      }
-    ]  
+    ]
   ]
 };
 
