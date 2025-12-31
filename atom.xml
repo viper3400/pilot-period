@@ -2,11 +2,48 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.pilot-period.org/</id>
     <title>Pilot Period Blog</title>
-    <updated>2024-05-20T00:00:00.000Z</updated>
+    <updated>2025-12-31T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.pilot-period.org/"/>
     <subtitle>Pilot Period Blog</subtitle>
     <icon>https://www.pilot-period.org/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Not Every Season Needs Content]]></title>
+        <id>https://www.pilot-period.org/not-ever-season-needs-content</id>
+        <link href="https://www.pilot-period.org/not-ever-season-needs-content"/>
+        <updated>2025-12-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Silence on a blog feed isn’t absence - it’s time spent building elsewhere. May the new year reward curiosity, deep work, and those who create without broadcasting every step.]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p><strong>Silence on a blog feed isn’t absence - it’s time spent building elsewhere. May the new year reward curiosity, deep work, and those who create without broadcasting every step.</strong></p>
+</blockquote>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-long-pause-honestly-earned">A Long Pause, Honestly Earned<a href="https://www.pilot-period.org/not-ever-season-needs-content#a-long-pause-honestly-earned" class="hash-link" aria-label="Direct link to A Long Pause, Honestly Earned" title="Direct link to A Long Pause, Honestly Earned" translate="no">​</a></h4>
+<p>After more than a year and a half without posting, it’s clear that writing a regular tech blog isn’t climbing back onto my priority list anytime soon.
+The past months demanded focus elsewhere, and the silence here reflects that more honestly than any editorial plan ever could.
+Still, stepping in for a moment feels necessary - not to restart anything, but to disrupt the assumption that absence equals disengagement.</p>
+<p><img decoding="async" loading="lazy" alt="time spent elsewhere" src="https://www.pilot-period.org/assets/images/other-focus-33c8c80f5c38895fb4e87bd8aa4a571b.png" width="1536" height="1024" class="img_ev3q"></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-quiet-value-of-continued-writing">The Quiet Value of Continued Writing<a href="https://www.pilot-period.org/not-ever-season-needs-content#the-quiet-value-of-continued-writing" class="hash-link" aria-label="Direct link to The Quiet Value of Continued Writing" title="Direct link to The Quiet Value of Continued Writing" translate="no">​</a></h4>
+<p>What this long break sharpened is my respect for those who continue to write consistently in a landscape dominated by AI-generated noise.
+Publishing thoughtful, human-made work today is almost rebellious.
+It requires intent, patience, and the willingness to contribute without expecting clicks, revenue, or algorithmic favor.
+The people who still craft posts out of curiosity, conviction, or the desire to share real experience deserve more than
+quiet admiration—they represent a part of tech culture that refuses to disappear under automated convenience.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="seasons-of-building-over-documenting">Seasons of Building Over Documenting<a href="https://www.pilot-period.org/not-ever-season-needs-content#seasons-of-building-over-documenting" class="hash-link" aria-label="Direct link to Seasons of Building Over Documenting" title="Direct link to Seasons of Building Over Documenting" translate="no">​</a></h4>
+<p>Meanwhile, I’ve been building, learning, breaking things, and moving fast enough that documenting it all stopped feeling essential.
+And that’s fine. Not every season supports writing, and not every thought needs to be turned into content.
+But there’s value in showing up occasionally, if only to remind myself that reflection doesn’t require a publishing cadence—it requires intention.
+A short return like this forces clarity: what do I actually care about sharing, and why?</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-marker-not-a-return">A Marker, Not a Return<a href="https://www.pilot-period.org/not-ever-season-needs-content#a-marker-not-a-return" class="hash-link" aria-label="Direct link to A Marker, Not a Return" title="Direct link to A Marker, Not a Return" translate="no">​</a></h4>
+<p>This post won’t be the start of a comeback. It won’t be followed by a weekly stream of insights or tidy summaries of what I’ve been working on.
+It’s simply the one piece I’ll leave here for 2025 - a marker, a provocation, and a nod to the people who keep the craft alive while the rest of us drift in and out.</p>
+<p>And as the next year unfolds, I hope for more of what tech culture desperately needs: sharper thinking, deeper curiosity, and fewer performative updates.
+May 2026  reward those who build with intent, write with integrity, and ignore the pressure to chase trends for the sake of visibility.</p>
+<p>This space will likely stay quiet. But quiet isn’t the same as empty. Sometimes it just means the real work is happening elsewhere.</p>]]></content>
+        <author>
+            <name>Jan Graefe</name>
+            <uri>https://jangraefe.de</uri>
+        </author>
+        <category label="blog" term="blog"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Normal Flaky Tests]]></title>
         <id>https://www.pilot-period.org/normal-flaky-tests</id>
