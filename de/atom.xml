@@ -2,11 +2,72 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.pilot-period.org/de/</id>
     <title>Pilot Period Blog</title>
-    <updated>2025-12-31T00:00:00.000Z</updated>
+    <updated>2026-05-03T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.pilot-period.org/de/"/>
     <subtitle>Pilot Period Blog</subtitle>
     <icon>https://www.pilot-period.org/de/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[You Fired the Wrong Testers]]></title>
+        <id>https://www.pilot-period.org/de/fired-wrong-testers</id>
+        <link href="https://www.pilot-period.org/de/fired-wrong-testers"/>
+        <updated>2026-05-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Fire your testers because AI writes tests?]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p><em><strong>Fire your testers because AI writes tests?<br></strong></em>
+<em><strong>Trigger Warning - ⚠️ - You just removed the only people paid to distrust your code.</strong></em></p>
+</blockquote>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-convenient-narrative">The Convenient Narrative<a href="https://www.pilot-period.org/de/fired-wrong-testers#the-convenient-narrative" class="hash-link" aria-label="Direkter Link zur The Convenient Narrative" title="Direkter Link zur The Convenient Narrative" translate="no">​</a></h4>
+<p>Right now, companies are cutting testers because “AI writes tests now.”
+<br>It sounds efficient. It isn’t. It’s a category error.
+<br>Because there was always a gap between <strong>testing</strong> and <strong>real testing</strong>.</p>
+<p><img decoding="async" loading="lazy" alt="ai ships a giraffe" src="https://www.pilot-period.org/de/assets/images/ai-giraffe-07d8c118f8f4fb64b90adfa790e7c81c.png" width="1536" height="1024" class="img_ev3q"></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-testers-youre-replacing">The Testers You’re Replacing<a href="https://www.pilot-period.org/de/fired-wrong-testers#the-testers-youre-replacing" class="hash-link" aria-label="Direkter Link zur The Testers You’re Replacing" title="Direkter Link zur The Testers You’re Replacing" translate="no">​</a></h4>
+<p>Yes - there were testers who followed scripts, clicked through flows, and validated what was already expected. That kind of testing <em>will</em> disappear. AI is perfectly capable of reproducing predictable checks.</p>
+<p>But that was never the real value.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-testers-you-actually-needed">The Testers You Actually Needed<a href="https://www.pilot-period.org/de/fired-wrong-testers#the-testers-you-actually-needed" class="hash-link" aria-label="Direkter Link zur The Testers You Actually Needed" title="Direkter Link zur The Testers You Actually Needed" translate="no">​</a></h4>
+<p>The real value was always the other kind:</p>
+<p>The testers who think adversarially.
+Who question the requirement, not just the implementation.
+Who find the bug nobody thought to look for.</p>
+<p>Those testers were:</p>
+<ul>
+<li class="">Rare.</li>
+<li class="">Underappreciated.</li>
+<li class="">Often the first to be cut.</li>
+</ul>
+<p>And now we’re doubling down on that mistake.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="ai-doesnt-replace-them">AI Doesn’t Replace Them<a href="https://www.pilot-period.org/de/fired-wrong-testers#ai-doesnt-replace-them" class="hash-link" aria-label="Direkter Link zur AI Doesn’t Replace Them" title="Direkter Link zur AI Doesn’t Replace Them" translate="no">​</a></h4>
+<p>AI doesn’t replace them. It makes them more important.</p>
+<p>Because AI is incredibly good at producing code that looks right - and tests that agree with it. It creates a closed loop of confidence.</p>
+<p>What it doesn’t do is step outside that loop.</p>
+<p>It doesn’t ask:</p>
+<ul>
+<li class="">“What if the requirement itself is wrong?”</li>
+<li class="">“What happens at the edge no one defined?”</li>
+<li class="">“Where does this break in the real world?”</li>
+</ul>
+<p>That’s not a tooling problem. That’s a mindset.</p>
+<p>And it’s exactly the mindset most organizations are currently removing.</p>
+<p>So here’s the real risk:</p>
+<p>Not that AI introduces more bugs.
+But that it removes the last line of defense against invisible ones.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="what-youre-really-removing">What You’re Really Removing<a href="https://www.pilot-period.org/de/fired-wrong-testers#what-youre-really-removing" class="hash-link" aria-label="Direkter Link zur What You’re Really Removing" title="Direkter Link zur What You’re Really Removing" translate="no">​</a></h4>
+<p>Because if you fire the people trained to challenge assumptions, you don’t just lose testers.</p>
+<p>You lose skepticism.</p>
+<p>And in an AI-driven development process, skepticism isn’t optional. It’s infrastructure.</p>
+<p>The uncomfortable possibility?</p>
+<p>We may need to relearn this the hard way.</p>
+<p>Let the testers go.
+Ship faster.
+Trust the green checks.</p>
+<p>And then watch systems fail in ways that were entirely predictable -
+if someone had been there to ask the uncomfortable questions.</p>
+<p>AI won’t kill testing.</p>
+<p>It will expose whether you ever understood what good testing actually was.</p>]]></content>
+        <category label="testing" term="testing"/>
+        <category label="leadership" term="leadership"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Not Every Season Needs Content]]></title>
         <id>https://www.pilot-period.org/de/not-ever-season-needs-content</id>
