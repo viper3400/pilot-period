@@ -2,11 +2,56 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.pilot-period.org/de/</id>
     <title>Pilot Period Blog</title>
-    <updated>2026-05-03T00:00:00.000Z</updated>
+    <updated>2026-06-04T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://www.pilot-period.org/de/"/>
     <subtitle>Pilot Period Blog</subtitle>
     <icon>https://www.pilot-period.org/de/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Open Letter to Jan Molak]]></title>
+        <id>https://www.pilot-period.org/de/serenity-js-open-letter</id>
+        <link href="https://www.pilot-period.org/de/serenity-js-open-letter"/>
+        <updated>2026-06-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Jan,]]></summary>
+        <content type="html"><![CDATA[<p>Jan,</p>
+<p>Your recent updates to <a href="https://serenity-js.org/" target="_blank" rel="noopener noreferrer" class="">serenity-js.org</a> are a significant improvement, and they highlight something I believe is increasingly important for our industry: testing strategy matters more than tooling.</p>
+<p>We've exchanged a few DMs about the accessibility of Serenity/JS, particularly how difficult it can be for newcomers to understand where it fits into their testing journey. When you asked me to review the latest changes to the website, I realised my feedback was about more than the site itself, so I thought I'd share it in the form of an open letter.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="meeting-people-where-they-are">Meeting People Where They Are<a href="https://www.pilot-period.org/de/serenity-js-open-letter#meeting-people-where-they-are" class="hash-link" aria-label="Direkter Link zur Meeting People Where They Are" title="Direkter Link zur Meeting People Where They Are" translate="no">​</a></h2>
+<p>What stands out most about the updated site is how effectively it meets people where they are. Instead of assuming visitors already understand the Screenplay Pattern, it starts with the problems teams are trying to solve and then shows different paths into Serenity/JS.</p>
+<p>Whether someone is looking for better reporting, more maintainable tests, or a full Screenplay-based architecture, they can quickly understand where Serenity/JS fits and how it might help.</p>
+<p>That matters because most teams don't wake up looking for a new framework. They are looking for solutions to real problems. By focusing on those problems first, the site makes Serenity/JS far more approachable and relevant.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="a-shift-in-the-industry">A Shift in the Industry<a href="https://www.pilot-period.org/de/serenity-js-open-letter#a-shift-in-the-industry" class="hash-link" aria-label="Direkter Link zur A Shift in the Industry" title="Direkter Link zur A Shift in the Industry" translate="no">​</a></h2>
+<p>Reviewing the site also reminded me of a broader shift happening across our industry.</p>
+<p>For years, conversations about test automation have centred on tools. Playwright versus Cypress. Selenium versus WebdriverIO. Page Objects versus Screenplay.</p>
+<p>Today, AI has become part of that conversation as well.</p>
+<p>And honestly, that's a good thing.</p>
+<p>AI is already helping teams write tests faster, understand systems more quickly, improve documentation, and eliminate repetitive work. Used well, it can make automation engineers dramatically more productive.</p>
+<p>Yet the rise of AI also reinforces an important truth: the value of testing has never been in writing code.</p>
+<p>The real value lies in understanding risk, identifying meaningful behaviours, and deciding what is worth testing in the first place.</p>
+<p>Those are fundamentally human skills.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="the-impact-of-ai-on-testing">The Impact of AI on Testing<a href="https://www.pilot-period.org/de/serenity-js-open-letter#the-impact-of-ai-on-testing" class="hash-link" aria-label="Direkter Link zur The Impact of AI on Testing" title="Direkter Link zur The Impact of AI on Testing" translate="no">​</a></h2>
+<p>An AI can generate a Playwright test in seconds. It can even generate hundreds of them. But someone still needs to decide which behaviours matter, what level of confidence is required, and how testing supports the goals of the business.</p>
+<p>As AI lowers the barrier to creating automation code, the differentiator will not be who can generate the most tests. It will be who can design the most effective testing strategy and communicate it clearly.</p>
+<p>This is why I believe test strategy should always come before tooling.</p>
+<p>Not because tools don't matter - they absolutely do.</p>
+<p>But the best tools amplify a good strategy rather than compensate for the lack of one.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="why-serenityjs-matters">Why Serenity/JS Matters<a href="https://www.pilot-period.org/de/serenity-js-open-letter#why-serenityjs-matters" class="hash-link" aria-label="Direkter Link zur Why Serenity/JS Matters" title="Direkter Link zur Why Serenity/JS Matters" translate="no">​</a></h2>
+<p>This is where I think Serenity/JS becomes particularly relevant.</p>
+<p>Its value isn't that it can automate a browser. Playwright already does that brilliantly.</p>
+<p>Its value is that it encourages teams to think about behaviour, intent, and outcomes. It helps automation express what users are trying to achieve rather than simply documenting which buttons were clicked.</p>
+<p>In an AI-assisted world, that emphasis on intent becomes even more important. When generating automation becomes easier, the quality of the thinking behind that automation becomes the real advantage.</p>
+<p>What I appreciate about the updated Serenity/JS website is that it moves the conversation in exactly that direction. It explains not only what Serenity/JS is, but also the problems it helps teams solve and the thinking behind it.</p>
+<p>The result is a much clearer path for newcomers and a stronger message for experienced practitioners.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="conclusion">Conclusion<a href="https://www.pilot-period.org/de/serenity-js-open-letter#conclusion" class="hash-link" aria-label="Direkter Link zur Conclusion" title="Direkter Link zur Conclusion" translate="no">​</a></h2>
+<p>In a world where AI is making test automation more accessible than ever, helping people think more clearly about testing may be one of the most valuable things a framework can do.</p>
+<p>Congratulations on the work.</p>
+<p>Best, Jan</p>]]></content>
+        <category label="testing" term="testing"/>
+        <category label="automation" term="automation"/>
+        <category label="serenity-js" term="serenity-js"/>
+        <category label="hands-on" term="hands-on"/>
+        <category label="playwright" term="playwright"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[You Fired the Wrong Testers]]></title>
         <id>https://www.pilot-period.org/de/fired-wrong-testers</id>
