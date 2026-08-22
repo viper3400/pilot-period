@@ -1,0 +1,132 @@
+---
+slug: a-passing-test-is-not-a-test-report
+title: A Passing Test Is Not a Test Report
+authors: [jang]
+tags: [testing, playwright, serenity-js, screenplay]
+---
+
+> **If your test report only tells you what passed and what failed, you don’t have a test report. <br />**
+> **You have an automation log with nicer HTML. <br />**
+
+The new Serenity/JS HTML reporter is a good reason to ask an uncomfortable question:
+
+### Have we become so obsessed with “simple” test automation that we’ve automated away the meaning of our tests?
+Modern test automation is remarkably good at telling us that something failed.
+
+We get a red build, a failed test name, a stack trace, perhaps a screenshot or trace.
+Playwright's HTML reporter gives us plenty of technical information to investigate what happened.
+
+But does the report tell us _what the test was actually trying to prove_?
+
+That question came back to me because [Serenity/JS](https://serenity-js.org/) recently introduced its own [HTML reporter](https://serenity-js.org/handbook/reporting/html-reporter/).
+Technically, this is already an interesting change. Serenity/JS reporting previously relied on the Java-based Serenity BDD reporter.
+For a Node.js project, requiring a JRE and a JAR just to generate the final report always felt like unnecessary baggage.
+
+![Report with meaning](/img/report-with-meaning.png)
+
+The new `@serenity-js/html-reporter` removes that dependency and provides reporting directly in the Node.js ecosystem.
+
+That's useful. But just removing Java isn't the interesting part.
+
+## A report can only show what the test knows
+
+Let's consider a typical Playwright test:
+
+```ts
+test('customer can complete checkout', async ({ page }) => {
+    await page.goto('/cart');
+    await page.getByRole('button', { name: 'Checkout' }).click();
+    await page.getByLabel('Email').fill('customer@example.com');
+    await page.getByRole('button', { name: 'Pay' }).click();
+
+    await expect(
+        page.getByText('Thank you for your order')
+    ).toBeVisible();
+});
+```
+
+There is nothing wrong with this test.
+It is concise, easy to execute, and Playwright can give us excellent diagnostics when one of those operations fails.
+
+It's just that most of its meaning exists only in our heads.
+
+The automation knows about navigating, locating, filling, clicking and asserting. 
+The reader has to reconstruct the user's intention from those operations.
+
+With Screenplay, we might instead see something closer to:
+
+```ts
+await actor.attemptsTo(
+    ProceedToCheckout(),
+    ProvidePaymentDetails(),
+    PlaceTheOrder(),
+    Ensure.that(
+        OrderConfirmation.message(),
+        equals('Thank you for your order'),
+    ),
+);
+```
+
+This is more abstraction, it requires Tasks to be implemented and named, and that's often where the familiar objection appears:
+
+**"That's too much overhead."**
+
+If we're counting lines required to make a browser click something, that's probably true.
+
+But then we're measuring the wrong thing.
+
+## What looks like overhead becomes reporting context
+
+The additional structure gives the test vocabulary beyond browser operations.
+Serenity/JS knows that the actor is attempting to place an order and which activities make up that process.
+
+That information can then appear in the report.
+
+This is the part I find much more interesting about the new HTML reporter than its implementation technology.
+It can present capabilities, scenarios, Tasks, Interactions, assertions and supporting evidence because those concepts existed while the test was running.
+
+The reporter isn't trying to infer the meaning afterwards.
+
+**A reporter cannot recover intent that was never expressed by the test.**
+
+This is where I think our obsession with automation tooling sometimes works against us.
+We optimise for how quickly we can write a test, how few abstractions we need and how directly we can call the browser API. 
+Then, when hundreds of tests run in CI, we wonder why the report mostly tells us that something clicked, waited or failed.
+
+A failing locator is useful technical information.
+
+Knowing what the user was trying to accomplish when that locator failed is useful testing information.
+
+And we need both!
+
+## Not all overhead is useful
+
+This doesn't mean every click deserves its own Screenplay Task.
+Abstraction without additional meaning just moves code around.
+
+And this is exactly why removing the old Java reporting dependency matters.
+
+Installing Java, downloading a JAR and running a separate reporting process didn't make a test more expressive.
+That was infrastructure overhead.
+
+Expressing an important business activity as a named Task is a different kind of overhead.
+It preserves information that can help someone understand the test later.
+
+The new Serenity/JS HTML reporter removes some of the former while making better use of the latter.
+
+That seems like a good trade.
+
+## A passing test is not a test report
+
+A test report shouldn't only answer:
+
+> What passed and what failed?
+
+It should help us understand **what behaviour was exercised, what was expected, and what the system was trying to do when something went wrong**.
+
+Playwright already gives us excellent automation and debugging tools.
+Serenity/JS adds another dimension by encouraging tests to carry meaning that can survive beyond the source code and into the report.
+
+Yes, that requires some structure.
+
+But if our test suite is supposed to tell us something about the quality and behaviour of the software rather than merely whether the automation finished successfully, calling all of that structure "overhead" misses the point.
